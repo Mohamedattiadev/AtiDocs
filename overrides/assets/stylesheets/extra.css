@@ -1,0 +1,223 @@
+/* === Doom One Dark Theme for MkDocs Material === */
+
+/* Dark mode base UI colors */
+:root {
+  --md-default-bg-color: #282c34;
+  --md-primary-fg-color: #51afef;
+  --md-accent-fg-color: #c678dd;
+  --md-default-fg-color: #bbc2cf;
+  --md-typeset-color: #bbc2cf;
+
+  --md-code-bg-color: #1e222a;
+  --md-code-fg-color: #98be65;
+
+  --md-code-hl-number-color: #dcaeea;
+  --md-code-hl-function-color: #51afef;
+  --md-code-hl-constant-color: #a9a1e1;
+  --md-code-hl-keyword-color: #c678dd;
+  --md-code-hl-string-color: #98be65;
+  --md-code-hl-comment-color: #5b6268;
+  --md-code-hl-variable-color: #ecbe7b;
+  --md-code-hl-operator-color: #56b6c2;
+  --md-code-hl-punctuation-color: #abb2bf;
+
+  --md-footer-bg-color: #21252b;
+  --md-footer-fg-color: #bbc2cf;
+}
+
+/* Hide logo */
+.md-header__button.md-logo {
+  display: none !important;
+}
+
+/* Dark mode syntax blocks */
+[data-md-color-scheme="slate"] {
+  --md-hue: 210;
+}
+
+/* Code block appearance */
+.highlight {
+  background: #1e222a !important;
+  color: #bbc2cf !important;
+  border-radius: 6px;
+  padding: 0.8em 0.5em;
+  overflow-x: auto;
+  font-family: Menlo, Consolas, Monaco, "Courier New", monospace;
+}
+
+/* Token styles */
+.highlight .k {
+  color: #c678dd;
+  font-weight: bold;
+}
+.highlight .s {
+  color: #98be65;
+}
+.highlight .nf {
+  color: #51afef;
+}
+.highlight .nc {
+  color: #a9a1e1;
+  font-weight: bold;
+}
+.highlight .mi {
+  color: #dcaeea;
+}
+.highlight .c {
+  color: #5b6268;
+  font-style: italic;
+}
+.highlight .o {
+  color: #56b6c2;
+}
+.highlight .nv {
+  color: #ecbe7b;
+}
+.highlight .p {
+  color: #abb2bf;
+}
+.highlight .bp {
+  color: #51afef;
+}
+.highlight .err {
+  color: #ff6c6b;
+  background-color: #1c1f24;
+}
+
+/* Inline code */
+.md-typeset code {
+  background-color: #282c34;
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+  font-size: 0.95em;
+}
+
+/* Inline code in headings */
+.md-typeset h1 code,
+.md-typeset h2 code,
+.md-typeset h3 code {
+  color: #ecbe7b;
+}
+
+/* Link styling */
+.md-typeset a {
+  color: #51afef;
+}
+.md-typeset a:hover {
+  color: #c678dd;
+}
+
+/* Dark scrollbar */
+::-webkit-scrollbar-thumb {
+  background-color: #5b6268;
+  border-radius: 4px;
+}
+
+/* === Doom One Light Variant === */
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: #f2f2f2;
+  --md-primary-fg-color: #005f87;
+  --md-accent-fg-color: #803dbd;
+  --md-default-fg-color: #2a2e34;
+  --md-typeset-color: #2a2e34;
+
+  --md-code-bg-color: #e0e0e0;
+  --md-code-fg-color: #2a2e34;
+
+  --md-code-hl-number-color: #dcaeea;
+  --md-code-hl-function-color: #51afef;
+  --md-code-hl-constant-color: #a9a1e1;
+  --md-code-hl-keyword-color: #c678dd;
+  --md-code-hl-string-color: #98be65;
+  --md-code-hl-comment-color: #7a7a7a;
+  --md-code-hl-variable-color: #ecbe7b;
+  --md-code-hl-operator-color: #56b6c2;
+  --md-code-hl-punctuation-color: #4a4a4a;
+
+  --md-footer-bg-color: #21252b;
+  --md-footer-fg-color: #bbc2cf;
+}
+
+/* Light mode code blocks */
+[data-md-color-scheme="default"] .highlight {
+  background: #f2f2f2 !important;
+  color: #2a2e34 !important;
+  border-radius: 6px;
+  padding: 0.8em 0.5em;
+  overflow-x: auto;
+  font-family: Menlo, Consolas, Monaco, "Courier New", monospace;
+}
+
+[data-md-color-scheme="default"] .highlight .k {
+  color: #c678dd;
+  font-weight: bold;
+}
+[data-md-color-scheme="default"] .highlight .s {
+  color: #98be65;
+}
+[data-md-color-scheme="default"] .highlight .nf {
+  color: #51afef;
+}
+[data-md-color-scheme="default"] .highlight .nc {
+  color: #a9a1e1;
+  font-weight: bold;
+}
+[data-md-color-scheme="default"] .highlight .mi {
+  color: #dcaeea;
+}
+[data-md-color-scheme="default"] .highlight .c {
+  color: #7a7a7a;
+  font-style: italic;
+}
+[data-md-color-scheme="default"] .highlight .o {
+  color: #56b6c2;
+}
+[data-md-color-scheme="default"] .highlight .nv {
+  color: #ecbe7b;
+}
+[data-md-color-scheme="default"] .highlight .p {
+  color: #4a4a4a;
+}
+[data-md-color-scheme="default"] .highlight .bp {
+  color: #51afef;
+}
+[data-md-color-scheme="default"] .highlight .err {
+  color: #ff6c6b;
+}
+
+/* Light mode inline code */
+[data-md-color-scheme="default"] .md-typeset code {
+  background-color: #e8e8e8;
+  color: #005f87;
+  border-radius: 4px;
+  padding: 0.15em 0.9em;
+  font-size: 0.95em;
+}
+
+/* Inline code in headings */
+[data-md-color-scheme="default"] .md-typeset h1 code,
+[data-md-color-scheme="default"] .md-typeset h2 code,
+[data-md-color-scheme="default"] .md-typeset h3 code {
+  color: #ecbe7b;
+}
+
+/* Light mode links */
+[data-md-color-scheme="default"] .md-typeset a {
+  color: #005f87;
+}
+[data-md-color-scheme="default"] .md-typeset a:hover {
+  color: #803dbd;
+}
+
+/* Light mode scrollbar */
+[data-md-color-scheme="default"] ::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+}
+
+/* === Normalize Code Block Layout (Light & Dark) === */
+.md-typeset pre {
+  border-radius: 6px;
+  padding: 0.8em 0.5em;
+  margin: 0.1em 0;
+  overflow-x: auto;
+}

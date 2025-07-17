@@ -1,0 +1,1 @@
+from .doomone import DoomOneStyle
