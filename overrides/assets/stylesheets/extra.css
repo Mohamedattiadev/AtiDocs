@@ -35,6 +35,21 @@
   --md-hue: 210;
 }
 
+/* === Emphasize Top-Level Sidebar Sections === */
+
+.md-nav__item--nested > .md-nav__link {
+  font-weight: bold;
+  font-size: 1.02em;
+  color: #51afef !important; /* Doom yellow */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Optional: Add icon bullets for top-level categories */
+.md-nav__item--nested > .md-nav__link::before {
+  content: "❯ ";
+  color: #c678dd;
+}
 /* Code block appearance */
 .highlight {
   background: #1e222a !important;

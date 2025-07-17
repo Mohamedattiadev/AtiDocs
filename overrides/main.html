@@ -1,116 +1,93 @@
-{% extends "base.html" %} {% block content %} {{ super() }}
+{% extends "base.html" %}
 
-<style>
-  #password-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(15, 15, 20, 0.97);
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    font-family: "Fira Code", monospace;
-  }
-
-  #password-box {
-    background: #1e1e2e;
-    border: 1px solid #5e81ac;
-    padding: 2rem;
-    border-radius: 12px;
-    text-align: center;
-    width: 90%;
-    max-width: 380px;
-    box-shadow: 0 0 12px #5e81ac88;
-    animation: fadeIn 0.3s ease-in-out;
-    color: #cdd6f4;
-  }
-
-  #password-box h2 {
-    font-size: 1.5rem;
-    color: #8fbcbb;
-    margin-bottom: 0.5rem;
-  }
-
-  #password-box p {
-    color: #a6accd;
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
-  }
-
-  #password-box input {
-    background: #2e3440;
-    color: #cdd6f4;
-    padding: 0.6rem;
-    width: 100%;
-    border: 1px solid #4c566a;
-    border-radius: 6px;
-    font-size: 1rem;
-    outline: none;
-  }
-
-  #password-box input::placeholder {
-    color: #7b88a1;
-  }
-
-  #password-box button {
-    margin-top: 1rem;
-    padding: 0.6rem;
-    width: 100%;
-    background: #81a1c1;
-    color: #1e1e2e;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s;
-  }
-
-  #password-box button:hover {
-    background: #88c0d0;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
+{% block extrahead %}
+  {{ super() }}
+  <style>
+    #password-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 15, 20, 0.97);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      font-family: "Fira Code", monospace;
     }
-    to {
-      opacity: 1;
-      transform: scale(1);
+
+    #password-box {
+      background: #1e1e2e;
+      border: 1px solid #5e81ac;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      color: #cdd6f4;
+      box-shadow: 0 0 12px #5e81ac88;
     }
-  }
-</style>
 
-<div id="password-overlay">
-  <div id="password-box">
-    <h2>🔐 ATIDocs Access</h2>
-    <p>This documentation is private. Enter the password to continue.</p>
-    <input type="password" id="password-input" placeholder="••••••••••" />
-    <button onclick="checkPassword()">Unlock</button>
-  </div>
-</div>
-
-<script>
-  const correctPassword = "passwordy"; // Change to your desired password
-  const stored = localStorage.getItem("passwordVerified");
-
-  if (stored === correctPassword) {
-    document.getElementById("password-overlay").style.display = "none";
-  }
-
-  function checkPassword() {
-    const input = document.getElementById("password-input").value;
-    if (input === correctPassword) {
-      localStorage.setItem("passwordVerified", correctPassword);
-      document.getElementById("password-overlay").style.display = "none";
-    } else {
-      alert("❌ Incorrect password.");
+    #password-box input {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #4c566a;
+      border-radius: 6px;
+      background: #2e3440;
+      color: #cdd6f4;
     }
-  }
-</script>
 
+    #password-box button {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 0.6rem;
+      background: #81a1c1;
+      color: #1e1e2e;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #password-box button:hover {
+      background: #88c0d0;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  {% if not config.extra.skip_password_check %}
+    <div id="password-overlay" style="display: none;">
+      <div id="password-box">
+        <h2>🔐 ATIDocs Access</h2>
+        <p>Enter the password to unlock documentation.</p>
+        <input type="password" id="password-input" placeholder="••••••••••" />
+        <button onclick="checkPassword()">Unlock</button>
+      </div>
+    </div>
+  {% endif %}
+  {{ super() }}
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script>
+    const correctPassword = "passwordy"; // Change this to your actual password
+    const isVerified = localStorage.getItem("passwordVerified") === correctPassword;
+
+    if (!isVerified) {
+      const overlay = document.getElementById("password-overlay");
+      overlay.style.display = "flex";
+    }
+
+    function checkPassword() {
+      const input = document.getElementById("password-input").value;
+      if (input === correctPassword) {
+        localStorage.setItem("passwordVerified", correctPassword);
+        document.getElementById("password-overlay").style.display = "none";
+      } else {
+        alert("❌ Incorrect password");
+      }
+    }
+  </script>
 {% endblock %}
