@@ -8,92 +8,108 @@ repo_name: edit
 edit_uri: edit/main/docs/
 
 nav:
-  - 🏠 Home: index.md
+  - 🏠  Home:
+      - Overview: index.md
+      - About: about.md
+      - Contact: contact.md
 
-  - 🧠 Frontend:
-      - 🗂️ Overview: frontend/index.md
-      - 🟨 JavaScript:
+  - 🧠  Frontend:
+      - Overview: frontend/index.md
+      - JS:
           - Overview: frontend/js/index.md
           - DOM:
               - Overview: frontend/js/dom/index.md
-              - 1.0 DOM Basics: frontend/js/dom/1.0.md
-              - 1.1 DOM Selectors: frontend/js/dom/1.1.md
-              - 1.2 DOM Events: frontend/js/dom/1.2.md
-              - 2.0 Advanced DOM: frontend/js/dom/2.0.md
-              - 🧪 Test:
-                  - 1.0 DOM Basics: frontend/js/dom/test/1.0.md
-                  - 2.0 DOM Basics: frontend/js/dom/test/1.1.md
-          - Fetch: frontend/js/fetch.md
+              - 1.0 DOM Basics: frontend/js/dom/1.DomBasics.md
+              - 2.0 Advanced DOM: frontend/js/dom/2.AdvancedDom.md
+          - Fetch:
+              - Overview: frontend/js/Fetch/index.md
+              - 1.0 Fetch Basics: frontend/js/Fetch/1.fetch.md
+              - 2.0 Advanced Fetch: frontend/js/Fetch/2.AdvancedFetch.md
           - Promises: frontend/js/promises.md
-      - 🟦 TypeScript:
+      - TS:
           - Overview: frontend/ts/index.md
           - Types: frontend/ts/types.md
           - Generics: frontend/ts/generics.md
-      - ⚛️ React:
+      - React:
           - Overview: frontend/react/index.md
           - Hooks: frontend/react/hooks.md
           - Context: frontend/react/context.md
           - Router: frontend/react/router.md
-      - ⬛ Next.js:
+      - Next:
           - Overview: frontend/next/index.md
           - Pages: frontend/next/pages.md
           - Routing: frontend/next/routing.md
           - API Routes: frontend/next/api-routes.md
-      - 🟩 Vue:
+      - Vue:
+          - Overview: frontend/vue/index.md
           - Basics: frontend/vue/basics.md
           - Composition API: frontend/vue/composition-api.md
-      - 🔷 Nuxt:
+      - Nuxt:
           - Overview: frontend/nuxt/index.md
           - Routing: frontend/nuxt/routing.md
-  - ⚙️ Backend:
-      - 🗂️ Overview: frontend/index.md
-      - Node.js: backend/node.md
-      - Express: backend/express.md
+  - ⚙️  Backend:
+      # - 🗂️ Overview: frontend/index.md
+      - node:
+          - Overview: backend/node/index.md
+          - 1.0 Node Basics: backend/node/1.nodeBasics.md
+          - 2.0 Express: backend/node/2.express.md
+
       - API:
+          - Overview: backend/api/index.md
           - REST: backend/api/rest.md
           - GraphQL: backend/api/graphql.md
       - Database:
-          - MongoDB: backend/db/mongodb.md
-          - PostgreSQL: backend/db/postgresql.md
+          - Overview: backend/db/index.md
+          - Mongodb: backend/db/mongodb.md
+          - Postgresql: backend/db/postgresql.md
           - Redis: backend/db/redis.md
 
-  - 🔧 DevOps:
-      # - 🗂️ Overview:
-      - 🗂️ Overview: frontend/index.md
-      - Docker: devops/docker.md
-      - CI/CD: devops/ci-cd.md
+  - 🔧  DevOps:
+      - Overview: devops/index.md
+      # - 🗂️ Overview: frontend/index.md
+      - Docker:
+          - Overview: devops/docker/index.md
+          - 1.0 docker Basics: devops/docker/1.dockerBasics.md
       - Nginx: devops/nginx.md
 
-  - 🧪 Testing:
-      # - 🗂️ Overview:
-
-      - 🗂️ Overview: frontend/index.md
+  - 🧪  Testing:
+      - Overview: testing/index.md
       - Jest: testing/jest.md
       - Vitest: testing/vitest.md
 
-  - 📊 Algorithms:
-      # - 🗂️ Overview:
-      - 🗂️ Overview: frontend/index.md
+  - 📊  Algorithms:
+      - Overview: algorithms/index.md
 
-      - Sorting: algorithms/sorting.md
+      - Sorting:
+          - Overview: algorithms/sorting/index.md
+          - 1.0 SelectionSort: algorithms/sorting/selection-sort.md
       - Searching: algorithms/searching.md
       - Graphs: algorithms/graphs.md
 
-  - 🧰 Patterns:
-      - MVC: patterns/mvc.md
-      - Factory: patterns/factory.md
-
-  - 🔐 Security:
+  - 🔐  Security:
+      - Overview: security/index.md
       - JWT: security/jwt.md
       - CSRF: security/csrf.md
 
-  - 📝 Notes:
-      - Git: notes/git.md
-      - Shell: notes/shell.md
-      - VS Code: notes/vscode.md
+  - 📝  CI/CD:
+      - Overview: ci-cd/index.md
+      - Git: ci-cd/git.md
+      - Shell: ci-cd/shell.md
+      - VS Code: ci-cd/vscode.md
+      - Nvim: ci-cd/nvim.md
 
-  - ✂️ Snippets:
-      - Overview: snippets/index.md
+  - 💻 Languages:
+      - Overview: programming/index.md
+      - C:
+          - Overview: programming/C/index.md
+      - C++:
+          - Overview: programming/C++/index.md
+      - Java:
+          - Overview: programming/Java/index.md
+      - Lua:
+          - Overview: programming/Lua/index.md
+      - Python:
+          - Overview: programming/Python/index.md
 
 theme:
   name: material
