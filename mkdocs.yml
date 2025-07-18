@@ -14,7 +14,12 @@ nav:
       - 🗂️ Overview: frontend/index.md
       - 🟨 JavaScript:
           - Overview: frontend/js/index.md
-          - DOM: frontend/js/dom.md
+          - DOM:
+              - Overview: frontend/js/dom/index.md
+              - 1.0 DOM Basics: frontend/js/dom/1.0.md
+              - 1.1 DOM Selectors: frontend/js/dom/1.1.md
+              - 1.2 DOM Events: frontend/js/dom/1.2.md
+              - 2.0 Advanced DOM: frontend/js/dom/2.0.md
           - Fetch: frontend/js/fetch.md
           - Promises: frontend/js/promises.md
       - 🟦 TypeScript:
@@ -37,8 +42,8 @@ nav:
       - 🔷 Nuxt:
           - Overview: frontend/nuxt/index.md
           - Routing: frontend/nuxt/routing.md
-
   - ⚙️ Backend:
+      - 🗂️ Overview: frontend/index.md
       - Node.js: backend/node.md
       - Express: backend/express.md
       - API:
@@ -50,15 +55,23 @@ nav:
           - Redis: backend/db/redis.md
 
   - 🔧 DevOps:
+      # - 🗂️ Overview:
+      - 🗂️ Overview: frontend/index.md
       - Docker: devops/docker.md
       - CI/CD: devops/ci-cd.md
       - Nginx: devops/nginx.md
 
   - 🧪 Testing:
+      # - 🗂️ Overview:
+
+      - 🗂️ Overview: frontend/index.md
       - Jest: testing/jest.md
       - Vitest: testing/vitest.md
 
   - 📊 Algorithms:
+      # - 🗂️ Overview:
+      - 🗂️ Overview: frontend/index.md
+
       - Sorting: algorithms/sorting.md
       - Searching: algorithms/searching.md
       - Graphs: algorithms/graphs.md
@@ -79,8 +92,6 @@ nav:
   - ✂️ Snippets:
       - Overview: snippets/index.md
 
-  - 🟪 Typescript:
-      - Overview: typescript/index.md
 theme:
   name: material
   custom_dir: overrides
@@ -108,21 +119,24 @@ theme:
   language: en
 
   features:
-    - navigation.expand
+    # - navigation.expand
+    - content.code.select
     - navigation.indexes
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.preview
+    - navigation.tracking
+    - navigation.instant.progress
     - navigation.path
     - navigation.top
-    - navigation.instant
     - navigation.tracking # Updates the URL as you scroll (great for deep docs)
     - navigation.tabs # Top-level tabs for main sections
-    # - navigation.tabs.sticky # Tabs stick to the top on scroll
-    - navigation.sections # Indented sidebar groups
+    # - navigation.expand
     - content.tabs.link
+    - navigation.prune
     - content.code.annotate
     - navigation.top # Back to top button
-    # - header.autohide
     - toc.follow
-    # - navigation.sections
     - content.action.edit # Show edit icon in floating toolbar
     - content.action.view # View on GitHub button
 
@@ -133,6 +147,8 @@ theme:
     # 🔍 Optional
     - search.highlight # Highlight search terms on match
     - search.suggest
+    - announce.dismis
+    - search.share
 
 extra_css:
   - assets/stylesheets/extra.css
@@ -156,17 +172,42 @@ extra:
 copyright: Copyright © 2025 Mohamed Attia
 
 markdown_extensions:
+  - attr_list
+  - footnotes
+  - md_in_html
+  - abbr
+  - admonition
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
   - pymdownx.highlight:
       use_pygments: true
-      pygments_style: monokai
+      line_spans: __span
+      pygments_lang_class: true
+      anchor_linenums: true
+      # pygments_style: monokai
   - pymdownx.superfences
   - pymdownx.inlinehilite
   - pymdownx.tabbed:
       alternate_style: true
   - admonition
+  - tables
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - toc:
       permalink: true
-
+      permalink_title: Anchor link to this section for reference
+  - pymdownx.arithmatex:
+      generic: true
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 plugins:
   - search
   - offline
