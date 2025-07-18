@@ -51,6 +51,34 @@
 
 /* === Emphasize Top-Level Sidebar Sections === */
 
+.md-nav__item--nested .md-nav__item > .md-nav__link::before {
+  content: "⮞ "; /* Sub-level: Right arrow */
+  color: #c678dd;
+}
+
+.md-nav__item--nested .md-nav__item .md-nav__item > .md-nav__link::before {
+  content: "◉ ";
+  color: #c678dd;
+}
+
+.md-nav__item--nested
+  .md-nav__item
+  .md-nav__item
+  .md-nav__item
+  > .md-nav__link::before {
+  content: "◍ ";
+  color: #c678dd;
+}
+
+.md-nav__item--nested
+  .md-nav__item
+  .md-nav__item
+  .md-nav__item
+  .md-nav__item
+  > .md-nav__link::before {
+  content: "● ";
+  color: #c678dd;
+}
 .md-nav__item--nested .md-nav__link {
   font-weight: bold;
   font-size: 1.2em;
@@ -80,11 +108,13 @@
   font-weight: normal;
   color: #bbc2cf !important; /* Slightly dimmer */
 }
-/* Optional: Add icon bullets for top-level categories */
-.md-nav__item--nested .md-nav__item > .md-nav__link::before {
-  content: "❯ ";
-  color: #c678dd;
+
+.md-nav__item--nested .md-nav__item .md-nav__item .md-nav__item .md-nav__link {
+  font-size: 0.92em;
+  font-weight: normal;
+  color: #bbc2cf !important; /* Slightly dimmer */
 }
+/* Optional: Add icon bullets for top-level categories */
 /* Code block appearance */
 .highlight {
   background: #1e222a !important;

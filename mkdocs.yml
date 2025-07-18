@@ -20,6 +20,9 @@ nav:
               - 1.1 DOM Selectors: frontend/js/dom/1.1.md
               - 1.2 DOM Events: frontend/js/dom/1.2.md
               - 2.0 Advanced DOM: frontend/js/dom/2.0.md
+              - 🧪 Test:
+                  - 1.0 DOM Basics: frontend/js/dom/test/1.0.md
+                  - 2.0 DOM Basics: frontend/js/dom/test/1.1.md
           - Fetch: frontend/js/fetch.md
           - Promises: frontend/js/promises.md
       - 🟦 TypeScript:
