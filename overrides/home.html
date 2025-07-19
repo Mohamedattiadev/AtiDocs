@@ -4,6 +4,7 @@
   {{ super() }}
 
   <style>
+    /* === Base Styles: Hiding default elements & Hero setup === */
     .md-header {
       position: initial;
     }
@@ -25,89 +26,135 @@
       }
     }
 
+    /* --- Hero Section --- */
     .atidocs-hero__bg {
       background: url('assets/images/illustration.png') center center / cover no-repeat fixed;
-      padding: 6rem 0 4rem;
+      padding: 6rem 1rem 4rem;
       text-align: center;
       position: relative;
       color: white;
     }
-
-    /* Transparent overlay */
     .atidocs-hero__bg::before {
       content: "";
       position: absolute;
       inset: 0;
-      background-color: rgba(0, 0, 0, 0.5); /* 50% dark overlay */
+      background-color: rgba(0, 0, 0, 0.5);
       z-index: 0;
     }
-
     .atidocs-hero__teaser {
       max-width: 720px;
       margin: 0 auto;
       padding: 2rem;
       position: relative;
-      z-index: 1; /* Above overlay */
+      z-index: 1;
     }
-
-.atidocs-hero__teaser h1 {
-  font-size: 2.75rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: white !important;
-}
-
-
-
-  [data-md-color-scheme="default"] .atidocs-hero__teaser h1 {
-  font-size: 2.75rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: white !important;
-}
+    .atidocs-hero__teaser h1 {
+      font-size: 2.75rem !important;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: white !important;
+    }
+[data-md-color-scheme="default"] .atidocs-hero__teaser h1 {
+      font-size: 2.75rem !important;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: white !important;
+    }
     .atidocs-hero__teaser p {
       font-size: 1.25rem;
       margin-bottom: 2rem;
     }
-
     .atidocs-buttons a {
       margin: 0 0.5rem;
     }
-
     .atidocs-scroll {
       margin-top: 3rem;
       display: flex;
       justify-content: center;
     }
-
     .atidocs-scroll svg {
       width: 2.5rem;
       height: 2.5rem;
       fill: white;
       animation: bounce 2s infinite;
     }
-
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(10px); }
     }
-
+    
+    /* --- Content Sections --- */
     .atidocs-sections {
-      padding: 4rem 3rem;
-      max-width: 1200px; /* wider */
+      padding: 4rem 1rem;
+      max-width: 1200px;
       margin: 0 auto;
+      width: 100%;
     }
-
     .atidocs-sections h2 {
       margin-top: 2rem;
     }
+
+    /* === Responsive Adjustments for Tablet & Mobile === */
+
+    /* Tablet-sized devices (e.g., iPads) */
+    @media screen and (max-width: 1024px) {
+      .atidocs-hero__bg {
+        /* 'fixed' background can be jerky on mobile, 'scroll' is safer */
+        background-attachment: scroll;
+        padding: 5rem 1rem 3rem;
+      }
+      .atidocs-hero__teaser h1 {
+        font-size: 2.25rem;
+      }
+      .atidocs-hero__teaser p {
+        font-size: 1.1rem;
+      }
+      .atidocs-sections {
+        padding: 3rem 1.5rem;
+      }
+    }
+
+    /* Mobile-sized devices (e.g., iPhones) */
+    @media screen and (max-width: 768px) {
+      .atidocs-hero__bg {
+        padding: 4rem 1rem 2rem;
+      }
+      .atidocs-hero__teaser h1 {
+        font-size: 1.75rem; /* Further reduce font for small screens */
+      }
+      .atidocs-hero__teaser p {
+        font-size: 1rem;
+      }
+      .atidocs-buttons a {
+        /* Stack buttons vertically for easy tapping */
+        display: block;
+        margin: 0.75rem auto;
+        width: fit-content;
+      }
+      .atidocs-scroll {
+        margin-top: 2rem;
+      }
+      .atidocs-scroll svg {
+        width: 2rem;
+        height: 2rem;
+      }
+      .atidocs-sections {
+        padding: 2rem 1rem;
+      }
+      .atidocs-sections h2 {
+        font-size: 1.5rem;
+      }
+      .atidocs-sections pre {
+        /* Allows long code lines to scroll horizontally instead of breaking layout */
+        overflow-x: auto;
+      }
+    }
   </style>
 
-  <!-- Hero section -->
   <section class="atidocs-hero__bg">
     <div class="atidocs-hero__teaser md-typeset">
       <h1>👋 Welcome to ATIDocs</h1>
-      <p><strong>Vim-powered</strong>, <strong>keyboard-first</strong>,<span style="color: #c678dd"> <strong>Doom One </strong></span>- inspired docs for developers who code with precision.</p>
+      <p><strong>Vim-powered</strong>, <strong>keyboard-first</strong>,<span style="color: #c678dd"> <strong>Doom One </strong></span>-inspired docs for developers who code with precision.</p>
       <div class="atidocs-buttons">
         <a href="about.html" class="md-button md-button--primary">About us</a>
         <a href="#atidocs-sections" class="md-button md-button--secondary">Learn more</a>
@@ -122,28 +169,27 @@
     </div>
   </section>
 
-  <!-- Learn more section -->
-  <section id="atidocs-sections" style="width:1200px" class="atidocs-sections md-typeset">
+  <section id="atidocs-sections" class="atidocs-sections md-typeset">
     <h2>🕹️ Keyboard Navigation</h2>
-<ul>
-  <li><code>h</code> / <code>j</code> / <code>k</code> / <code>l</code> — Move <code>left</code> / <code>down</code> / <code>up</code> / <code>right</code> like in Vim</li>
-  <li><code>g</code> <strong>+</strong> <code>g</code> — Jump to the <strong><code>top</code></strong> of the page</li>
-  <li><strong>Shift</strong> <strong>+</strong> <code>g</code> — Jump to the <strong><code>bottom</code></strong></li>
-  <li><code>f</code> — Activate <strong><code>hint mode</code></strong> to follow links instantly</li>
-</ul>
+    <ul>
+      <li><code>h</code> / <code>j</code> / <code>k</code> / <code>l</code> — Move like in Vim</li>
+      <li><code>g</code> + <code>g</code> — Jump to the <strong>top</strong> of the page</li>
+      <li><strong>Shift</strong> + <code>g</code> — Jump to the <strong>bottom</strong></li>
+      <li><code>f</code> — Activate <strong>hint mode</strong></li>
+    </ul>
     <blockquote>
       ⚡ Powered by <a href="https://github.com/philc/vimium" target="_blank">Vimium</a>
     </blockquote>
 
     <h2>📚 Sections</h2>
-<ul>
-  <li>🧠 <strong><a href="frontend/">Frontend</a></strong>: React, TypeScript, Vue, Next.js…</li>
-  <li>⚙️ <strong><a href="backend/">Backend</a></strong>: Node.js, GraphQL, Databases</li>
-  <li>🔧 <strong><a href="devops/">DevOps</a></strong>: Docker, CI/CD, Nginx</li>
-  <li>🧪 <strong><a href="testing/">Testing</a></strong>: Jest, Vitest</li>
-  <li>📊 <strong><a href="algorithms/">Algorithms & Patterns</a></strong></li>
-  <li>💻 <strong><a href="programming/">Languages</a></strong>: C, C++, Python, Lua…</li>
-</ul>
+    <ul>
+      <li>🧠 <strong><a href="frontend/">Frontend</a></strong>: React, TypeScript, Vue, Next.js…</li>
+      <li>⚙️ <strong><a href="backend/">Backend</a></strong>: Node.js, GraphQL, Databases</li>
+      <li>🔧 <strong><a href="devops/">DevOps</a></strong>: Docker, CI/CD, Nginx</li>
+      <li>🧪 <strong><a href="testing/">Testing</a></strong>: Jest, Vitest</li>
+      <li>📊 <strong><a href="algorithms/">Algorithms & Patterns</a></strong></li>
+      <li>💻 <strong><a href="programming/">Languages</a></strong>: C, C++, Python, Lua…</li>
+    </ul>
 
     <h2>🔓 Clone & Use ATIDocs</h2>
     <p>This project is <strong>open source</strong>.</p>

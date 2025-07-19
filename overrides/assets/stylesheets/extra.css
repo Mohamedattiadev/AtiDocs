@@ -44,6 +44,19 @@
   display: none !important;
 }
 
+.md-nav__title .md-logo {
+  display: none !important;
+  padding: 0;
+  margin: 0;
+}
+/* 🔧 Fix GitHub repo icon color inside mobile nav */
+.md-nav__source {
+  color: white !important;
+  background-color: #51afef;
+}
+.md-nav__source svg {
+  fill: white !important;
+}
 /* Dark mode syntax blocks */
 [data-md-color-scheme="slate"] {
   --md-hue: 210;
@@ -305,6 +318,7 @@
 /* Headings in content area */
 [data-md-color-scheme="default"] .md-typeset h1 {
   color: #c678dd !important;
+  font-size: 1.2em !important;
   font-weight: bold;
   border-bottom: 2px solid #c678dd;
   padding-bottom: 0.3em;
@@ -320,7 +334,7 @@
 /* Level 1: Main sidebar items (like Frontend, Backend) */
 [data-md-color-scheme="default"] .md-nav__item--nested > .md-nav__link {
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1.2em !important;
   color: #c678dd !important;
   text-transform: uppercase;
   letter-spacing: 0.3px;
@@ -332,7 +346,7 @@
   .md-nav__item
   > .md-nav__link {
   font-weight: bold;
-  font-size: 0.98em;
+  font-size: 0.98em !important;
   color: #56b6c2 !important;
   text-transform: uppercase;
   letter-spacing: 0.7px;
@@ -344,7 +358,7 @@
   .md-nav__item
   .md-nav__item
   > .md-nav__link {
-  font-size: 0.95em;
+  font-size: 0.95em !important;
   font-weight: bold;
   /* color: #57c7ff !important; */
   color: #51afef !important;
@@ -357,7 +371,119 @@
   .md-nav__item
   .md-nav__item
   > .md-nav__link {
-  font-size: 0.92em;
+  font-size: 0.92em !important;
   font-weight: normal;
   color: #282a36 !important;
+}
+
+/* === Responsive Fixes for Mobile and Tablet (Max 768px) === */
+@media (max-width: 768px) {
+  /* 🟣 Top-Level Sidebar Item Adjustments */
+
+  [data-md-color-scheme="default"] .md-typeset h1 {
+    color: #c678dd !important;
+    font-size: 1em !important;
+    font-weight: bold;
+    border-bottom: 2px solid #c678dd;
+    padding-bottom: 0.3em;
+  }
+
+  .md-header__button.md-logo {
+    display: none !important;
+  }
+  .md-nav__item--nested > .md-nav__link {
+    font-size: 1em;
+    padding: 0.5em 0.9em;
+    letter-spacing: 0.2px;
+  }
+
+  .md-nav__item--nested .md-nav__item > .md-nav__link::before {
+    font-size: 0.85em;
+    margin-right: 0.4em;
+  }
+
+  .md-nav__item .md-nav__link {
+    padding-left: 1.2em;
+  }
+
+  /* 🔹 Level 2 and deeper sidebar links */
+  .md-nav__item--nested .md-nav__item .md-nav__link {
+    font-size: 0.95em;
+    letter-spacing: 0.3px;
+  }
+
+  .md-nav__item--nested .md-nav__item .md-nav__item .md-nav__link {
+    font-size: 0.9em;
+  }
+
+  .md-nav__item--nested
+    .md-nav__item
+    .md-nav__item
+    .md-nav__item
+    .md-nav__link {
+    font-size: 0.88em;
+  }
+
+  /* 📱 Headings in content area */
+  .md-typeset h1 {
+    font-size: 1.2em;
+    padding-bottom: 0.2em;
+    margin-top: 1rem;
+  }
+
+  .md-typeset h2 {
+    font-size: 1.25em;
+    padding-bottom: 0.2em;
+  }
+
+  .md-typeset h3 {
+    font-size: 1.1em;
+  }
+
+  /* 🔤 Body text and inline code tweaks */
+  .md-typeset {
+    font-size: 0.95em;
+  }
+
+  .md-typeset code {
+    font-size: 0.9em;
+    padding: 0.1em 0.3em;
+  }
+
+  /* 🧱 Code blocks */
+  .highlight {
+    font-size: 0.9em;
+    padding: 0.6em;
+  }
+
+  .md-typeset pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-size: 0.9em;
+  }
+
+  /* ✅ Tables */
+  .md-typeset table {
+    font-size: 0.9em;
+    display: block;
+    overflow-x: auto;
+  }
+
+  /* 🔧 Buttons and annotations */
+  .md-typeset .md-button {
+    font-size: 0.85em;
+    padding: 0.5em 0.9em;
+  }
+
+  /* Optional: reduce padding in header */
+  /* .md-header { */
+  /*   padding: 0 !important */
+  /*   ; */
+  /* } */
+  .md-nav__title {
+    padding-top: 35px !important;
+    padding-bottom: 0px !important;
+    font-size: 1.2rem !important;
+    /* background: red !important; */
+  }
 }

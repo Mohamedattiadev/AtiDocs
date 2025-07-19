@@ -1,6 +1,6 @@
 ---
 template: home.html
-title: Material for MkDocs
+title: Atidocs Home page
 social:
   cards_layout_options:
     title: Documentation that simply works

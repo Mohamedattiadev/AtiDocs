@@ -4,7 +4,7 @@ site_description: "Doom One–themed developer documentation site."
 site_author: Mohamed Attia
 
 repo_url: https://github.com/Mohamedattiadev/AtiDocs
-repo_name: AtiDocs # Optional: replace with your actual repo
+repo_name: Mohamedattiadev/AtiDocs # Optional: replace with your actual repo
 edit_uri: edit/main/docs/
 
 nav:
@@ -114,7 +114,7 @@ nav:
 theme:
   name: material
   custom_dir: overrides
-  logo: false
+  # logo: null
 
   palette:
     - scheme: slate # 🌑 Dark mode (Doom One)
