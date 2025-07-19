@@ -196,7 +196,7 @@
 /* === Doom One Light Variant === */
 [data-md-color-scheme="default"] {
   --md-default-bg-color: #f2f2f2;
-  --md-primary-fg-color: #005f87;
+  --md-primary-fg-color: #51afef;
   --md-accent-fg-color: #803dbd;
   --md-default-fg-color: #2a2e34;
   --md-typeset-color: #2a2e34;
@@ -300,4 +300,64 @@
   padding: 0.8em 0.5em;
   margin: 0.1em 0;
   overflow-x: auto;
+}
+
+/* Headings in content area */
+[data-md-color-scheme="default"] .md-typeset h1 {
+  color: #c678dd !important;
+  font-weight: bold;
+  border-bottom: 2px solid #c678dd;
+  padding-bottom: 0.3em;
+}
+
+[data-md-color-scheme="default"] .md-typeset h2 {
+  color: #56b6c2 !important;
+  font-weight: bold;
+  border-bottom: 2px solid #51afef;
+  padding-bottom: 0.3em;
+}
+
+/* Level 1: Main sidebar items (like Frontend, Backend) */
+[data-md-color-scheme="default"] .md-nav__item--nested > .md-nav__link {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #c678dd !important;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* Level 2: Nested under main (e.g., JavaScript, TypeScript) */
+[data-md-color-scheme="default"]
+  .md-nav__item--nested
+  .md-nav__item
+  > .md-nav__link {
+  font-weight: bold;
+  font-size: 0.98em;
+  color: #56b6c2 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+/* Level 3: Even deeper nesting (e.g., DOM, Fetch, etc.) */
+[data-md-color-scheme="default"]
+  .md-nav__item--nested
+  .md-nav__item
+  .md-nav__item
+  > .md-nav__link {
+  font-size: 0.95em;
+  font-weight: bold;
+  /* color: #57c7ff !important; */
+  color: #51afef !important;
+}
+
+/* Level 4+ (optional, dimmer look) */
+[data-md-color-scheme="default"]
+  .md-nav__item--nested
+  .md-nav__item
+  .md-nav__item
+  .md-nav__item
+  > .md-nav__link {
+  font-size: 0.92em;
+  font-weight: normal;
+  color: #282a36 !important;
 }

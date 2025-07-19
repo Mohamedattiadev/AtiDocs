@@ -3,7 +3,7 @@ site_name: ATIDocs
 site_description: "Doom One–themed developer documentation site."
 site_author: Mohamed Attia
 
-repo_url: https://github.com/Mohamedattiadev/AtiDocs
+# repo_url: https://github.com/Mohamedattiadev/AtiDocs
 repo_name: edit
 edit_uri: edit/main/docs/
 
