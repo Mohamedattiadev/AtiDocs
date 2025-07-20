@@ -24,8 +24,10 @@ nav:
           - Fetch: frontend/js/fetch.md
           - Promises: frontend/js/promises.md
           - Es6 Features: frontend/js/ES6.md
+          - Error Handling: frontend/js/ErrorHandling.md
           #NOTE: name the file as important if u want a "red" title
           - ( Js Advanced ): frontend/js/important.md
+          - ( Event Loop): frontend/js/important2.md
       - TS:
           - Overview: frontend/ts/index.md
           - Types: frontend/ts/types.md
