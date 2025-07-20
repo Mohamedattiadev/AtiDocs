@@ -116,6 +116,9 @@ nav:
 theme:
   name: material
   custom_dir: overrides
+  icon:
+    previous: fontawesome/solid/angle-left
+    next: fontawesome/solid/angle-right
   # logo: null
 
   palette:
@@ -141,6 +144,7 @@ theme:
 
   features:
     # - navigation.expand
+    #
     - content.code.select
     - navigation.indexes
     - navigation.instant
@@ -152,11 +156,13 @@ theme:
     - navigation.top
     - navigation.tracking # Updates the URL as you scroll (great for deep docs)
     - navigation.tabs # Top-level tabs for main sections
-    # - navigation.expand
+    - navigation.expand
     - content.tabs.link
     - navigation.prune
     - content.code.annotate
     - navigation.top # Back to top button
+
+    - navigation.footer # Back to top button
     - toc.follow
     - content.action.edit # Show edit icon in floating toolbar
     - content.action.view # View on GitHub button

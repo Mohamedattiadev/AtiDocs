@@ -419,7 +419,8 @@
   }
 
   [data-md-color-scheme="default"] .md-typeset h2 {
-    color: #56b6c2 !important;
+    color: #51afef !important;
+
     font-weight: bold;
 
     font-size: 0.9em !important;
@@ -428,11 +429,11 @@
   }
 
   [data-md-color-scheme="default"] .md-typeset h3 {
-    color: #56b6c2 !important;
+    color: #ecbe7b !important;
     font-weight: bold;
 
     font-size: 0.75em !important;
-    border-bottom: 2px solid #51afef;
+    /* border-bottom: 2px solid #51afef; */
     padding-bottom: 0.3em;
   }
 
@@ -538,4 +539,28 @@
 
 .md-nav__link[href*="important"] span {
   color: #ff5555 !important;
+}
+
+/* Footer navigation container */
+.md-footer__inner {
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Common styles for both links */
+.md-footer__link {
+  border: 2px solid #51afef;
+  padding: 0.8em 1.2em;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #51afef;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.md-footer__link:hover {
+  border: 2px solid #c678dd;
+  color: #c678dd;
 }
