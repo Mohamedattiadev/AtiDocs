@@ -2,7 +2,7 @@
 
 ATIDocs is a beautifully customized developer documentation site built using **MkDocs Material** with a **Doom One**–inspired theme. It supports frontend, backend, DevOps, testing, algorithms, security, CI/CD, and programming languages with a colorful, intuitive, and responsive UI.
 
-![ATIDocs Screenshot](assets/images/AtiDocsImg.png)
+![ATIDocs Screenshot](docs/assets/images/AtiDocsImg.png)
 
 ---
 
@@ -109,21 +109,10 @@ AtiDocs/
 
 **Mohamed Attia**
 
-- 📸 Instagram
+- 📸 [Instagram](https://www.instagram.com/mohmd_attia/)
 - 💻 [GitHub](https://github.com/Mohamedattiadev)
-- 🐦 Twitter / X
-- 💼 LinkedIn
-
-  social:
-
-  - icon: fontawesome/brands/instagram
-    link: https://www.instagram.com/mohmd_attia/
-  - icon: fontawesome/brands/github
-    link: https://github.com/Mohamedattiadev/
-  - icon: fontawesome/brands/x-twitter
-    link: https://x.com/Mohmd_Attia
-  - icon: fontawesome/brands/linkedin
-    link: https://www.linkedin.com/in/mohmd-attia/
+- 🐦 [Twitter / X](https://x.com/Mohmd_Attia)
+- 💼 [LinkedIn](https://www.linkedin.com/in/mohmd-attia/)
 
 ---
 
