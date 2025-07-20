@@ -38,7 +38,10 @@ source venv/bin/activate
 ### 3. Install Requirements
 
 ```bash
+
 pip install mkdocs mkdocs-material mkdocs-material-extensions pymdown-extensions
+
+pip install -r requirements.txt
 ```
 
 ### 4. Run Locally
@@ -76,18 +79,21 @@ Make sure to customize the repo URL in `.github/workflows/deploy.yml` if you're 
 ```bash
 AtiDocs/
 ├── docs/
-│   ├── index.md
+│   ├── assets/  # the images
+│   │     ├── stylesheets/extra.css
+│   │     └── images/screenshot.png
+│   │
+│   ├── index.md # the home page
 │   ├── frontend/
 │   ├── backend/
 │   ├── devops/
 │   └── ...
+│
 ├── overrides/
-│   └── partials/header.html
-├── assets/
-│   ├── stylesheets/extra.css
-│   └── images/screenshot.png
-├── mkdocs.yml
-└── README.md
+│   └── partials/..name.. .html # override any part u want ((check the mkdocs-material docs))
+├── mkdocs.yml # the main config
+└── README.md  # the readme file
+
 ```
 
 ---
