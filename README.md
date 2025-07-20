@@ -57,8 +57,8 @@ Visit: http://localhost:8000
 ## ⚙️ Configuration Overview
 
 - All settings live in `mkdocs.yml` (theme, nav, plugins, features, palette)
-- All extra CSS styles live in `assets/stylesheets/extra.css`
-- Header override: `overrides/partials/header.html`
+- All extra CSS styles live in `overrides/assets/stylesheets/extra.css`
+- Header override: `overrides/partials/header.html` **or any part of the site**
 
 ---
 
