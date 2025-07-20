@@ -17,15 +17,15 @@ nav:
       - Overview: frontend/index.md
       - JS:
           - Overview: frontend/js/index.md
-          - DOM:
-              - Overview: frontend/js/dom/index.md
-              - 1.0 DOM Basics: frontend/js/dom/1.DomBasics.md
-              - 2.0 Advanced DOM: frontend/js/dom/2.AdvancedDom.md
-          - Fetch:
-              - Overview: frontend/js/Fetch/index.md
-              - 1.0 Fetch Basics: frontend/js/Fetch/1.fetch.md
-              - 2.0 Advanced Fetch: frontend/js/Fetch/2.AdvancedFetch.md
+          - Basics: frontend/js/Basics.md
+          - Dom:
+              - 1.1 Dom: frontend/js/dom/dom.md
+              - 1.2 Event Handler: frontend/js/dom/eventHandler.md
+          - Fetch: frontend/js/fetch.md
           - Promises: frontend/js/promises.md
+          - Es6 Features: frontend/js/ES6.md
+          #NOTE: name the file as important if u want a "red" title
+          - ( Js Advanced ): frontend/js/important.md
       - TS:
           - Overview: frontend/ts/index.md
           - Types: frontend/ts/types.md
@@ -228,6 +228,7 @@ extra_javascript:
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
   - "javascripts/keyhints.js" # MkDocs will automatically check `overrides/`
+
 plugins:
   - search
   - offline

@@ -39,6 +39,15 @@
   border-bottom: 2px solid #51afef;
   padding-bottom: 0.3em;
 }
+
+.md-typeset h3 {
+  color: #ecbe7b !important;
+  font-weight: bold;
+  /* border-bottom: 2px solid #51afef; */
+  padding-bottom: 0.3em;
+  padding-top: 1.2em;
+  padding-left: 0.8em;
+}
 /* Hide logo */
 .md-header__button.md-logo {
   display: none !important;
@@ -64,6 +73,7 @@
 
 /* === Emphasize Top-Level Sidebar Sections === */
 
+/* Style nav items that contain parentheses */
 .md-nav__item--nested .md-nav__item > .md-nav__link::before {
   content: "⮞ "; /* Sub-level: Right arrow */
   color: #c678dd;
@@ -127,6 +137,11 @@
   font-weight: normal;
   color: #bbc2cf !important; /* Slightly dimmer */
 }
+
+/* .md-nav__link:has(span:contains("(")) { */
+/*   color: #ff5555 !important; */
+/*   font-size: 1.05rem !important; */
+/* } */
 /* Optional: Add icon bullets for top-level categories */
 /* Code block appearance */
 .highlight {
@@ -181,7 +196,7 @@
 .md-typeset code {
   background-color: #282c34;
   border-radius: 4px;
-  padding: 0.15em 0.4em;
+  padding: 0.15em 0.9em;
   font-size: 0.95em;
 }
 
@@ -206,81 +221,96 @@
   border-radius: 4px;
 }
 
-/* === Doom One Light Variant === */
 [data-md-color-scheme="default"] {
-  --md-default-bg-color: #f2f2f2;
-  --md-primary-fg-color: #51afef;
-  --md-accent-fg-color: #803dbd;
-  --md-default-fg-color: #2a2e34;
-  --md-typeset-color: #2a2e34;
-
-  --md-code-bg-color: #e0e0e0;
+  --md-code-bg-color: #f9f9f9;
   --md-code-fg-color: #2a2e34;
 
-  --md-code-hl-number-color: #dcaeea;
-  --md-code-hl-function-color: #51afef;
-  --md-code-hl-constant-color: #a9a1e1;
-  --md-code-hl-keyword-color: #c678dd;
-  --md-code-hl-string-color: #98be65;
-  --md-code-hl-comment-color: #7a7a7a;
-  --md-code-hl-variable-color: #ecbe7b;
-  --md-code-hl-operator-color: #56b6c2;
-  --md-code-hl-punctuation-color: #4a4a4a;
-
-  --md-footer-bg-color: #21252b;
-  --md-footer-fg-color: #bbc2cf;
+  --md-code-hl-number-color: #a626a4;
+  --md-code-hl-function-color: #4078f2;
+  --md-code-hl-constant-color: #986801;
+  --md-code-hl-keyword-color: #d73a49;
+  --md-code-hl-string-color: #50a14f;
+  --md-code-hl-comment-color: #6a737d;
+  --md-code-hl-variable-color: #e45649;
+  --md-code-hl-operator-color: #0184bc;
+  --md-code-hl-punctuation-color: #383a42;
 }
+/* === Doom One Light Variant === */
+/* [data-md-color-scheme="default"] { */
+/*   --md-default-bg-color: #f2f2f2; */
+/*   --md-primary-fg-color: #51afef; */
+/*   --md-accent-fg-color: #803dbd; */
+/*   --md-default-fg-color: #2a2e34; */
+/*   --md-typeset-color: #2a2e34; */
+/**/
+/*   --md-code-bg-color: #e0e0e0; */
+/*   --md-code-fg-color: #2a2e34; */
+/**/
+/*   --md-code-hl-number-color: #dcaeea; */
+/*   --md-code-hl-function-color: #51afef; */
+/*   --md-code-hl-constant-color: #a9a1e1; */
+/*   --md-code-hl-keyword-color: #c678dd; */
+/*   --md-code-hl-string-color: #98be65; */
+/*   --md-code-hl-comment-color: #7a7a7a; */
+/*   --md-code-hl-variable-color: #ecbe7b; */
+/*   --md-code-hl-operator-color: #56b6c2; */
+/*   --md-code-hl-punctuation-color: #4a4a4a; */
+/**/
+/*   --md-footer-bg-color: #21252b; */
+/*   --md-footer-fg-color: #bbc2cf; */
+/* } */
 
 /* Light mode code blocks */
+
 [data-md-color-scheme="default"] .highlight {
-  background: #f2f2f2 !important;
+  background: #f9f9f9 !important;
   color: #2a2e34 !important;
+  font-family: Menlo, Consolas, Monaco, "Courier New", monospace;
   border-radius: 6px;
   padding: 0.8em 0.5em;
   overflow-x: auto;
-  font-family: Menlo, Consolas, Monaco, "Courier New", monospace;
 }
 
 [data-md-color-scheme="default"] .highlight .k {
-  color: #c678dd;
+  color: #d73a49;
   font-weight: bold;
-}
+} /* keyword */
 [data-md-color-scheme="default"] .highlight .s {
-  color: #98be65;
-}
+  color: #50a14f;
+} /* string */
 [data-md-color-scheme="default"] .highlight .nf {
-  color: #51afef;
-}
+  color: #4078f2;
+} /* function */
 [data-md-color-scheme="default"] .highlight .nc {
-  color: #a9a1e1;
+  color: #986801;
   font-weight: bold;
-}
+} /* class name */
 [data-md-color-scheme="default"] .highlight .mi {
-  color: #dcaeea;
-}
+  color: #a626a4;
+} /* number */
 [data-md-color-scheme="default"] .highlight .c {
-  color: #7a7a7a;
+  color: #6a737d;
   font-style: italic;
-}
+} /* comment */
 [data-md-color-scheme="default"] .highlight .o {
-  color: #56b6c2;
-}
+  color: #0184bc;
+} /* operator */
 [data-md-color-scheme="default"] .highlight .nv {
-  color: #ecbe7b;
-}
+  color: #e45649;
+} /* variable */
 [data-md-color-scheme="default"] .highlight .p {
-  color: #4a4a4a;
-}
+  color: #383a42;
+} /* punctuation */
 [data-md-color-scheme="default"] .highlight .bp {
-  color: #51afef;
-}
+  color: #4078f2;
+} /* built-in */
 [data-md-color-scheme="default"] .highlight .err {
-  color: #ff6c6b;
+  color: #ff5555;
+  background-color: #ffecec;
 }
-
 /* Light mode inline code */
 [data-md-color-scheme="default"] .md-typeset code {
-  background-color: #e8e8e8;
+  background: #f9f9f9 !important;
   color: #005f87;
   border-radius: 4px;
   padding: 0.15em 0.9em;
@@ -308,17 +338,17 @@
 }
 
 /* === Normalize Code Block Layout (Light & Dark) === */
-.md-typeset pre {
-  border-radius: 6px;
-  padding: 0.8em 0.5em;
-  margin: 0.1em 0;
-  overflow-x: auto;
-}
+/* .md-typeset pre { */
+/*   border-radius: 6px; */
+/*   padding: 0.8em 0.5em; */
+/*   margin: 0.1em 0; */
+/*   overflow-x: auto; */
+/* } */
 
 /* Headings in content area */
 [data-md-color-scheme="default"] .md-typeset h1 {
   color: #c678dd !important;
-  font-size: 1.2em !important;
+  /* font-size: 1.2em !important; */
   font-weight: bold;
   border-bottom: 2px solid #c678dd;
   padding-bottom: 0.3em;
@@ -382,9 +412,27 @@
 
   [data-md-color-scheme="default"] .md-typeset h1 {
     color: #c678dd !important;
-    font-size: 1em !important;
+    font-size: 1.1em !important;
     font-weight: bold;
     border-bottom: 2px solid #c678dd;
+    padding-bottom: 0.3em;
+  }
+
+  [data-md-color-scheme="default"] .md-typeset h2 {
+    color: #56b6c2 !important;
+    font-weight: bold;
+
+    font-size: 0.9em !important;
+    border-bottom: 2px solid #51afef;
+    padding-bottom: 0.3em;
+  }
+
+  [data-md-color-scheme="default"] .md-typeset h3 {
+    color: #56b6c2 !important;
+    font-weight: bold;
+
+    font-size: 0.75em !important;
+    border-bottom: 2px solid #51afef;
     padding-bottom: 0.3em;
   }
 
@@ -426,18 +474,18 @@
 
   /* 📱 Headings in content area */
   .md-typeset h1 {
-    font-size: 1.2em;
+    font-size: 1.1em;
     padding-bottom: 0.2em;
     margin-top: 1rem;
   }
 
   .md-typeset h2 {
-    font-size: 1.25em;
+    font-size: 0.9em;
     padding-bottom: 0.2em;
   }
 
   .md-typeset h3 {
-    font-size: 1.1em;
+    font-size: 0.75em;
   }
 
   /* 🔤 Body text and inline code tweaks */
@@ -445,22 +493,22 @@
     font-size: 0.95em;
   }
 
-  .md-typeset code {
-    font-size: 0.9em;
-    padding: 0.1em 0.3em;
-  }
+  /* .md-typeset code { */
+  /*   font-size: 0.9em; */
+  /*   padding: 0.1em 0.3em; */
+  /* } */
 
   /* 🧱 Code blocks */
   .highlight {
     font-size: 0.9em;
-    padding: 0.6em;
+    padding: 0.8em 0.5em;
   }
 
-  .md-typeset pre {
-    white-space: pre-wrap;
-    word-break: break-word;
-    font-size: 0.9em;
-  }
+  /* .md-typeset pre { */
+  /*   white-space: pre-wrap; */
+  /*   word-break: break-word; */
+  /*   font-size: 0.9em; */
+  /* } */
 
   /* ✅ Tables */
   .md-typeset table {
@@ -475,15 +523,19 @@
     padding: 0.5em 0.9em;
   }
 
-  /* Optional: reduce padding in header */
-  /* .md-header { */
-  /*   padding: 0 !important */
-  /*   ; */
-  /* } */
   .md-nav__title {
     padding-top: 35px !important;
     padding-bottom: 0px !important;
-    font-size: 1.2rem !important;
-    /* background: red !important; */
+    font-size: 1rem !important;
   }
+
+  [data-md-color-scheme="default"] .md-nav__title {
+    padding-top: 35px !important;
+    padding-bottom: 0px !important;
+    font-size: 1rem !important;
+  }
+}
+
+.md-nav__link[href*="important"] span {
+  color: #ff5555 !important;
 }
