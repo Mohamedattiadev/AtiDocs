@@ -84,4 +84,16 @@ Start
 End
 This runs later
 
+
 ```
+
+## Video Guide
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+
+  <a href="https://www.youtube.com/watch?v=ubw2hdQIl4E" target="_blank" style="text-align: center; display: block; padding: 1em; border-radius: 10px; text-decoration: none;">
+    <img src="https://img.youtube.com/vi/ubw2hdQIl4E/0.jpg" alt="localStorage Video Tutorial" style="width: 100%; border-radius: 10px;" />
+    <strong style="display: block; margin-top: 0.5em;">localStorage in JavaScript - Web Dev Simplified</strong>
+  </a>
+
+</div>

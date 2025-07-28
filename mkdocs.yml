@@ -15,23 +15,39 @@ nav:
 
   - 🧠  Frontend:
       - Overview: frontend/index.md
-      - JS:
+
+      - html:
+          - Basics: frontend/html/html.md
+          - html tools & games: frontend/html/htmltool.md
+      - css:
+          - Basics: frontend/css/css.md
+          - (Css Advanced): frontend/css/important1.md
+          - css tools & games: frontend/css/toolcss.md
+
+      - js:
           - Overview: frontend/js/index.md
           - Basics: frontend/js/Basics.md
           - Dom:
               - 1.1 Dom: frontend/js/dom/dom.md
               - 1.2 Event Handler: frontend/js/dom/eventHandler.md
-          - Fetch: frontend/js/fetch.md
+          - Fetch:
+              - 1.0 fetch: frontend/js/fetch/fetch.md
+              - 2.0 (Error Handling): frontend/js/fetch/important1.md
           - Promises: frontend/js/promises.md
           - Es6 Features: frontend/js/ES6.md
           - Error Handling: frontend/js/ErrorHandling.md
+          - Local Storage: frontend/js/storage.md
           #NOTE: name the file as important if u want a "red" title
           - ( Js Advanced ): frontend/js/important.md
           - ( Event Loop): frontend/js/important2.md
+          - js tools & games: frontend/js/jstool.md
       - TS:
           - Overview: frontend/ts/index.md
           - Types: frontend/ts/types.md
+          - Interfaces: frontend/ts/interfaces.md
           - Generics: frontend/ts/generics.md
+          - Functions: frontend/ts/functions.md
+          - (real usecases): frontend/ts/important1.md
       - React:
           - Overview: frontend/react/index.md
           - Hooks: frontend/react/hooks.md
@@ -69,9 +85,14 @@ nav:
   - 🔧  DevOps:
       - Overview: devops/index.md
       # - 🗂️ Overview: frontend/index.md
+      #
+      #
+      - Git:
+          - 1.0 git: devops/Git/git.md
+          - 1.1 gitHub: devops/Git/github.md
       - Docker:
-          - Overview: devops/docker/index.md
-          - 1.0 docker Basics: devops/docker/1.dockerBasics.md
+          - 1.0 docker: devops/docker/docker.md
+          - 1.1 docker-compose: devops/docker/docker-compose.md
       - Nginx: devops/nginx.md
 
   - 🧪  Testing:
@@ -84,7 +105,14 @@ nav:
 
       - Sorting:
           - Overview: algorithms/sorting/index.md
-          - 1.0 SelectionSort: algorithms/sorting/selection-sort.md
+          - 1.1 Selection Sort: algorithms/sorting/selection-sort.md
+          - 1.2 bubble Sort: algorithms/sorting/bubble-sort.md
+          - 1.3 counting Sort: algorithms/sorting/counting-sort.md
+          - 1.4 radix Sort: algorithms/sorting/radix-sort.md
+          - 1.5 merge Sort: algorithms/sorting/merge-sort.md
+          - 1.6 quick Sort: algorithms/sorting/quick-sort.md
+
+      - LinkedList: algorithms/linkedlists.md
       - Searching: algorithms/searching.md
       - Graphs: algorithms/graphs.md
 
@@ -93,12 +121,11 @@ nav:
       - JWT: security/jwt.md
       - CSRF: security/csrf.md
 
-  - 📝  CI/CD:
+  - 📝  Dev workflow:
       - Overview: ci-cd/index.md
-      - Git: ci-cd/git.md
-      - Shell: ci-cd/shell.md
       - VS Code: ci-cd/vscode.md
       - Nvim: ci-cd/nvim.md
+      - tmux: ci-cd/tmux.md
 
   - 💻 Languages:
       - Overview: programming/index.md
@@ -202,6 +229,7 @@ markdown_extensions:
   - attr_list
   - footnotes
   - md_in_html
+  - pymdownx.blocks.caption
   - abbr
   - admonition
   - pymdownx.details
