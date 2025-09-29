@@ -122,10 +122,12 @@ nav:
       - CSRF: security/csrf.md
 
   - 📝  Dev workflow:
-      - Overview: ci-cd/index.md
-      - VS Code: ci-cd/vscode.md
-      - Nvim: ci-cd/nvim.md
-      - tmux: ci-cd/tmux.md
+      - Overview: dev-workflow/index.md
+      - VS Code: dev-workflow/vscode.md
+      - Nvim: dev-workflow/nvim.md
+      - tmux: dev-workflow/tmux.md
+      - n8n:
+          - Overview: dev-workflow/n8n/index.md
 
   - 💻 Languages:
       - Overview: programming/index.md
@@ -139,6 +141,12 @@ nav:
           - Overview: programming/Lua/index.md
       - Python:
           - Overview: programming/Python/index.md
+
+  - 📚 OS:
+      - Overview: operating-system/index.md
+      - xv6:
+          - Overview: operating-system/xv6/index.md
+          - Installtion for Linux: operating-system/xv6/important1.md
 
 theme:
   name: material
@@ -226,7 +234,7 @@ extra:
 copyright: Copyright © 2025 Mohamed Attia
 
 markdown_extensions:
-  - attr_list
+  # - attr_list
   - footnotes
   - md_in_html
   - pymdownx.blocks.caption
@@ -235,6 +243,11 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.inlinehilite
   - pymdownx.snippets
+  - def_list
+
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
   - pymdownx.highlight:
       use_pygments: true
       line_spans: __span

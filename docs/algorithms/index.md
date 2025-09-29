@@ -27,11 +27,11 @@ Explore all the key algorithms and data structures covered in this documentation
 | Structure          | Description                                           | Operations               | Walkthrough              |
 | ------------------ | ----------------------------------------------------- | ------------------------ | ------------------------ |
 | 🔗 **Linked List** | Linear collection of nodes connected via pointers     | Insert, Delete, Traverse | [View](./linkedlists.md) |
-| 📚 **Stack**       | LIFO structure (Last-In-First-Out)                    | Push, Pop, Peek          | [View](./stack.md)       |
-| 📬 **Queue**       | FIFO structure (First-In-First-Out)                   | Enqueue, Dequeue         | [View](./queue.md)       |
-| 🌲 **Trees**       | Hierarchical structure (root, child nodes)            | Insert, Search, Traverse | [View](./trees.md)       |
-| #️⃣ **Hashing**     | Key-value mapping using hash functions                | Insert, Search, Delete   | [View](./hashing.md)     |
-| 🌐 **Graphs**      | Set of nodes connected by edges (directed/undirected) | BFS, DFS, Shortest Path  | [View](./graph.md)       |
+| 📚 **Stack**       | LIFO structure (Last-In-First-Out)                    | Push, Pop, Peek          | [View]()                 |
+| 📬 **Queue**       | FIFO structure (First-In-First-Out)                   | Enqueue, Dequeue         | [View]()                 |
+| 🌲 **Trees**       | Hierarchical structure (root, child nodes)            | Insert, Search, Traverse | [View]()                 |
+| #️⃣ **Hashing**     | Key-value mapping using hash functions                | Insert, Search, Delete   | [View]()                 |
+| 🌐 **Graphs**      | Set of nodes connected by edges (directed/undirected) | BFS, DFS, Shortest Path  | [View]()                 |
 
 ---
 
