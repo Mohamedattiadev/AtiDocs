@@ -316,7 +316,7 @@ Hardware (CPU, Memory, Devices)
 ## 6. Storage Structure
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-  <img src="../../assets/images/OS/Overview/storage.png" width="100%" style="border-radius: 8px;" />
+  <img src="../assets/images/OS/Overview/storage.png" width="100%" style="border-radius: 8px;" />
 </div>
 
 ### 6.1 Main Types of Storage
@@ -364,7 +364,7 @@ Hardware (CPU, Memory, Devices)
 ## 7. How Does a Computer Start Up?
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-  <img src="../../assets/images/OS/Overview/HowPcWorks.png" width="100%" style="border-radius: 8px;" />
+  <img src="../assets/images/OS/Overview/HowPcWorks.png" width="100%" style="border-radius: 8px;" />
 </div>
 <br>
 
@@ -422,7 +422,7 @@ Hardware (CPU, Memory, Devices)
 ## 8. Operating System Operations
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-  <img src="../../assets/images/OS/Overview/dualMode.png" width="100%" style="border-radius: 8px;" />
+  <img src="../assets/images/OS/Overview/dualMode.png" width="100%" style="border-radius: 8px;" />
 </div>
 ### What is Dual-mode Operation?
 
@@ -471,19 +471,19 @@ user mode → system call → kernel mode → return → user mode
 
 === "MS-DOS"
 
-    ![MS-DOS](../../assets/images/OS/Overview/MS-DOS.png)
+    ![MS-DOS](../assets/images/OS/Overview/MS-DOS.png)
 
 === "UNIX"
 
-    ![UNIX](../../assets/images/OS/Overview/UNIX.png)
+    ![UNIX](../assets/images/OS/Overview/UNIX.png)
 
 === "Layered Approach"
 
-    ![Layered](../../assets/images/OS/Overview/Layered.png)
+    ![Layered](../assets/images/OS/Overview/Layered.png)
 
 === "Micro"
 
-    ![Micro](../../assets/images/OS/Overview/Micro.png)
+    ![Micro](../assets/images/OS/Overview/Micro.png)
 
 | Structure Type            | Description                                                                                                                            | Example        |
 | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
@@ -497,19 +497,19 @@ user mode → system call → kernel mode → return → user mode
 
 === "Linux"
 
-    ![Linux](../../assets/images/OS/Overview/Linux.png)
+    ![Linux](../assets/images/OS/Overview/Linux.png)
 
 === "Windows"
 
-    ![Windows](../../assets/images/OS/Overview/Windows.png)
+    ![Windows](../assets/images/OS/Overview/Windows.png)
 
 === "Mac"
 
-    ![AppleMacOS](../../assets/images/OS/Overview/AppleMacOS.png)
+    ![AppleMacOS](../assets/images/OS/Overview/AppleMacOS.png)
 
 === "Android"
 
-    ![Android](../../assets/images/OS/Overview/Android.png)
+    ![Android](../assets/images/OS/Overview/Android.png)
 
 | OS / Platform           | Structure Type                           | Notes / Features                                                                                                                                                                                                                                                 |
 | ----------------------- | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

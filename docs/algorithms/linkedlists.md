@@ -42,7 +42,7 @@ comments: true
 ## 2. Insertion in an Empty Linked List
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-  <img src="../../assets/images/algo/LinkedList/insert-empty.png" />
+  <img src="../assets/images/algo/LinkedList/insert-empty.jpg" width="100%" style="border-radius: 8px;" />
 </div>
 
 - Start with `head = nullptr`
