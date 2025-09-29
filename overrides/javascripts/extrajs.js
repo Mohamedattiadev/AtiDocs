@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let firstKey = "";
   const scrollStep = 100;
 
-  // Generate two-letter hints
+  // ... (All the hint-generating functions remain the same)
   function generateHints(count) {
     const chars = "adghjklqwertyuiopzxcvbnm1234567890";
     const hints = [];
@@ -16,13 +16,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     return hints;
   }
-
   function showHints() {
     if (hintsVisible) return;
     hintsVisible = true;
     activeHints = {};
     firstKey = "";
-
     const elements = Array.from(
       document.querySelectorAll(
         "a, button, [onclick], [role=button], [tabindex]",
@@ -36,18 +34,15 @@ document.addEventListener("DOMContentLoaded", function () {
         el.offsetHeight > 0
       );
     });
-
     const hints = generateHints(elements.length);
-
     elements.forEach((el, index) => {
       const hint = hints[index];
       if (!hint) return;
-
       const hintElement = document.createElement("div");
       hintElement.textContent = hint;
       hintElement.style.position = "absolute";
-      hintElement.style.backgroundColor = "#51afef"; // Purple background
-      hintElement.style.color = "#282a36"; // White text
+      hintElement.style.backgroundColor = "#51afef";
+      hintElement.style.color = "#282a36";
       hintElement.style.padding = "2px 6px";
       hintElement.style.borderRadius = "4px";
       hintElement.style.fontFamily = "monospace";
@@ -56,21 +51,17 @@ document.addEventListener("DOMContentLoaded", function () {
       hintElement.style.zIndex = "9999";
       hintElement.style.cursor = "pointer";
       hintElement.style.boxShadow = "0 2px 5px rgba(0,0,0,0.2)";
-
       const rect = el.getBoundingClientRect();
       hintElement.style.left = `${rect.left + window.scrollX}px`;
       hintElement.style.top = `${rect.top + window.scrollY}px`;
-
       hintElement.id = `hint-${hint}`;
       document.body.appendChild(hintElement);
-
       activeHints[hint] = {
         element: el,
         hintElement: hintElement,
       };
     });
   }
-
   function updateHintStyles() {
     Object.entries(activeHints).forEach(([hint, data]) => {
       if (firstKey && hint.startsWith(firstKey)) {
@@ -78,15 +69,14 @@ document.addEventListener("DOMContentLoaded", function () {
         data.hintElement.style.color = "#f2f2f2";
         data.hintElement.textContent = hint[1];
       } else if (firstKey) {
-        data.hintElement.style.backgroundColor = "#5d4d7a"; // Dimmed purple
+        data.hintElement.style.backgroundColor = "#5d4d7a";
         data.hintElement.style.color = "#f2f2f2";
       } else {
-        data.hintElement.style.backgroundColor = "#c678dd"; // Normal purple
+        data.hintElement.style.backgroundColor = "#c678dd";
         data.hintElement.textContent = hint;
       }
     });
   }
-
   function cleanupHints() {
     document.querySelectorAll("[id^='hint-']").forEach((el) => el.remove());
     hintsVisible = false;
@@ -125,7 +115,6 @@ document.addEventListener("DOMContentLoaded", function () {
       else {
         // gg - go to top
         if (e.key === "g" && !e.shiftKey) {
-          // Check for double 'g' press
           if (
             this.lastKey === "g" &&
             this.lastKeyTime &&
@@ -142,6 +131,26 @@ document.addEventListener("DOMContentLoaded", function () {
           window.scrollTo(0, document.body.scrollHeight);
           e.preventDefault();
         }
+        // ⭐ START: Read Mode functionality added here ⭐
+        else if (e.key === "F") {
+          // Ignore keypress if user is typing in a text field
+          const activeElement = document.activeElement;
+          if (
+            activeElement &&
+            (activeElement.tagName === "INPUT" ||
+              activeElement.tagName === "TEXTAREA" ||
+              activeElement.isContentEditable)
+          ) {
+            return;
+          }
+          // Toggle the 'data-read-mode' attribute on the body
+          const body = document.body;
+          const isReadMode = body.getAttribute("data-read-mode") === "true";
+          body.setAttribute("data-read-mode", !isReadMode);
+          console.log("Read Mode Toggled:", !isReadMode); // For debugging
+          e.preventDefault();
+        }
+        // ⭐ END: Read Mode functionality ⭐
         // hjkl scrolling
         else if (["h", "j", "k", "l"].includes(e.key)) {
           switch (e.key) {
@@ -160,7 +169,16 @@ document.addEventListener("DOMContentLoaded", function () {
           }
           e.preventDefault();
         }
+        // Center the content on the screen
+        // Toggle Centered Content Layout
+        else if (e.key === "C") {
+          const body = document.body;
+          const isCenterMode = body.getAttribute("data-center-mode") === "true";
+          body.setAttribute("data-center-mode", !isCenterMode);
+          e.preventDefault();
+        }
       }
+
       // Escape to close hints
       if (e.key === "Escape" && hintsVisible) {
         cleanupHints();

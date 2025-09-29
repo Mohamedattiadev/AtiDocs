@@ -592,3 +592,25 @@
   border: 2px solid #c678dd;
   color: #c678dd;
 }
+/* assets/css/custom.css */
+
+/*
+  Directly target the primary (left navigation) and 
+  secondary (right table of contents) sidebars.
+*/
+body[data-read-mode="true"] .md-sidebar--primary,
+body[data-read-mode="true"] .md-sidebar--secondary {
+  display: none !important;
+}
+
+/* Expand the main content area when sidebars are hidden */
+body[data-read-mode="true"] .md-main__inner.md-grid {
+  max-width: 100%;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+/* When Center Mode is active, center-align all text inside the content area */
+body[data-center-mode="true"] .md-typeset {
+  text-align: center;
+} /* Style for the new "Center Mode" */
