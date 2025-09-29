@@ -273,7 +273,7 @@ Hardware (CPU, Memory, Devices)
 ### 4.2 What is an Interrupt?
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-  <img src="../../assets/images/OS/Overview/interrupt.png" width="100%" style="border-radius: 8px;" />
+  <img src="../assets/images/OS/Overview/interrupt.png" width="100%" style="border-radius: 8px;" />
 </div>
 
 `Interrupt :`
