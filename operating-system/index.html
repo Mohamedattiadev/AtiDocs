@@ -1,0 +1,2739 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Overview about Operating System">
+      
+      
+        <meta name="author" content="Mohamed Attia">
+      
+      
+      
+        <link rel="prev" href="../programming/Python/index.html">
+      
+      
+        <link rel="next" href="xv6/index.html">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Operating System - ATIDocs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CFira+Code+Nerd+Font:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Fira Code Nerd Font"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#operating-system-fundamentals" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ATIDocs" class="md-header__button md-logo" aria-label="ATIDocs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ATIDocs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Operating System
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Mohamedattiadev/AtiDocs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Mohamedattiadev/AtiDocs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🏠  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../frontend/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🧠  Frontend
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../backend/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ⚙️  Backend
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../devops/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔧  DevOps
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../testing/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🧪  Testing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../algorithms/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📊  Algorithms
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../security/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  🔐  Security
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../dev-workflow/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📝  Dev workflow
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../programming/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  💻 Languages
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  📚 OS
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ATIDocs" class="md-nav__button md-logo" aria-label="ATIDocs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ATIDocs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Mohamedattiadev/AtiDocs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Mohamedattiadev/AtiDocs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../index.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    🏠  Home
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../frontend/index.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    🧠  Frontend
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../backend/index.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    ⚙️  Backend
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../devops/index.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    🔧  DevOps
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../testing/index.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    🧪  Testing
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../algorithms/index.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    📊  Algorithms
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../security/index.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    🔐  Security
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../dev-workflow/index.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    📝  Dev workflow
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../programming/index.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    💻 Languages
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link md-nav__link--active">
+              
+  
+  
+  <span class="md-ellipsis">
+    📚 OS
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link md-nav__link--active" for="__nav_10" id="__nav_10_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            📚 OS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="xv6/index.html" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    xv6
+    
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-os" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview of OS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-an-operating-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. What is an Operating System?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. What is an Operating System?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-os-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 OS goals:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-how-the-os-manages-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 How the OS Manages Applications
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-what-is-part-of-an-operating-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 What is part of an Operating System?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-popular-operating-systems-today" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Popular Operating Systems Today
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-what-operating-systems-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5 What Operating Systems Do
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-operating-system-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Operating System Definition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Operating System Definition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-what-is-the-kernelother-programsmiddleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 What is the Kernel,Other Programs,Middleware ?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-os-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. OS Basics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. OS Basics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-primitive-os-vs-multitasking" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Primitive OS vs Multitasking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-how-does-the-os-protect-itself-and-other-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 How Does the OS Protect Itself and Other Programs?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 How Does the OS Protect Itself and Other Programs?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-kernel-space-vs-user-space-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.1 Kernel Space vs User Space Table
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-what-is-a-system-call" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 What is a System Call?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 What is a System Call?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-how-does-it-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.1 How Does It Work?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-overview-of-computer-system-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Overview of Computer System Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Overview of Computer System Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-how-are-the-parts-of-a-computer-organized" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 How Are the Parts of a Computer Organized?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-what-is-an-interrupt" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 What is an Interrupt?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-what-happens-when-an-interrupt-occurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 What Happens When an Interrupt Occurs?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-what-is-a-trap" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 What is a Trap?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-io-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. I/O Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. I/O Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-types-of-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Types of I/O
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-storage-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Storage Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Storage Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-main-types-of-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Main Types of Storage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-why-storage-is-a-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Why Storage is a Hierarchy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-what-is-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 What is Caching?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-what-is-cache-coherency" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 What is Cache Coherency?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-how-does-a-computer-start-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. How Does a Computer Start Up?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. How Does a Computer Start Up?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-does-the-os-work-after-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Does the OS Work After Start?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#71-what-is-direct-memory-access-dma" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 What is Direct Memory Access (DMA)?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-data-structures-used-by-the-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Data Structures Used by the Kernel
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-operating-system-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Operating System Operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Operating System Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-dual-mode-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Dual-mode Operation?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is Dual-mode Operation?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-do-we-guarantee-that-user-does-not-explicitly-set-the-mode-bit-to-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do we guarantee that user does not explicitly set the mode bit to “kernel”?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#81-resource-management-by-the-os" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 Resource Management by the OS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-main-types-of-os-structures" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Main Types of OS Structures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Main Types of OS Structures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hybrid-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hybrid Systems
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-computer-system-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Computer System Environments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Computer System Environments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-types-of-operating-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.1 Types of Operating Systems
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Mohamedattiadev/AtiDocs/edit/main/docs/operating-system/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/Mohamedattiadev/AtiDocs/raw/main/docs/operating-system/index.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="operating-system-fundamentals">Operating System Fundamentals<a class="headerlink" href="#operating-system-fundamentals" title="Anchor link to this section for reference">&para;</a></h1>
+<h2 id="overview-of-os">Overview of OS<a class="headerlink" href="#overview-of-os" title="Anchor link to this section for reference">&para;</a></h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+  <img src="../assets/images/OS/Overview/OS.png" width="100%" style="border-radius: 8px;" />
+</div>
+
+<h2 id="1-what-is-an-operating-system">1. What is an Operating System?<a class="headerlink" href="#1-what-is-an-operating-system" title="Anchor link to this section for reference">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span><span class="w"> </span>hardware<span class="w"> </span><span class="o">]</span><span class="w">       </span>→<span class="w"> </span><span class="o">(</span>CPU,<span class="w"> </span>memory,<span class="w"> </span>devices<span class="o">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">     </span>⬇
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="o">[</span><span class="w"> </span>**OS**<span class="w"> </span><span class="o">]</span><span class="w">         </span>→<span class="w"> </span><span class="o">(</span>kernel,<span class="w"> </span>libraries,<span class="w"> </span>drivers<span class="o">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">     </span>⬇
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="o">[</span><span class="w"> </span>applications<span class="o">]</span><span class="w">    </span>→<span class="w"> </span><span class="o">(</span>word,<span class="w"> </span>web<span class="w"> </span>browser,<span class="w"> </span>etc.<span class="o">)</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">     </span>⬇
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="o">[</span><span class="w"> </span>Users<span class="w"> </span><span class="o">]</span><span class="w">          </span>→<span class="w"> </span><span class="o">(</span>Persons,<span class="w"> </span>Computers,<span class="w"> </span>machines<span class="o">)</span>
+</span></code></pre></div>
+<dl>
+<dt><code>OS :</code></dt>
+<dd>acts as a <strong>mediator</strong> between hardware and applications.</dd>
+<dt><code>Abstraction :</code></dt>
+<dd>to hide details of hardware from applications (e.g., file system, networking,virtual Memory, etc.)</dd>
+</dl>
+<hr />
+<h3 id="11-os-goals">1.1 OS goals:<a class="headerlink" href="#11-os-goals" title="Anchor link to this section for reference">&para;</a></h3>
+<ul>
+<li><strong>Simpler:</strong> Hides hardware complexity, making it easier for programmers.</li>
+<li><strong>Device Independent:</strong> Makes different devices of the same type look the same to apps.</li>
+<li><strong>Portable:</strong> Provides a consistent interface so apps can run on many machines/versions.</li>
+</ul>
+<hr />
+<h3 id="12-how-the-os-manages-applications">1.2 How the OS Manages Applications<a class="headerlink" href="#12-how-the-os-manages-applications" title="Anchor link to this section for reference">&para;</a></h3>
+<ul>
+<li>
+<dl>
+<dt><strong>Virtual Machine Interface:</strong></dt>
+<dd>
+<ul>
+<li>Makes each program think it’s the only one running.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>
+<dl>
+<dt><strong>Protection:</strong></dt>
+<dd>
+<ul>
+<li>Stops one program from interfering with another.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>
+<dl>
+<dt><strong>Sharing:</strong></dt>
+<dd>
+<ul>
+<li>Lets multiple programs run at the same time and share resources.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<hr />
+<h3 id="13-what-is-part-of-an-operating-system">1.3 What is part of an Operating System?<a class="headerlink" href="#13-what-is-part-of-an-operating-system" title="Anchor link to this section for reference">&para;</a></h3>
+<blockquote>
+<p><strong>Windowing system (GUI)</strong> ?</p>
+</blockquote>
+<ul>
+<li>Shows windows, icons, mouse, etc.</li>
+<li>Sometimes part of OS (older Windows).</li>
+<li>Sometimes separate (Linux lets you choose).</li>
+</ul>
+<blockquote>
+<p><strong>Web browser</strong> ?</p>
+</blockquote>
+<ul>
+<li>Not part of OS.</li>
+<li>It’s an application running on the OS.</li>
+</ul>
+<hr />
+<h3 id="14-popular-operating-systems-today">1.4 Popular Operating Systems Today<a class="headerlink" href="#14-popular-operating-systems-today" title="Anchor link to this section for reference">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Windows 10</strong></td>
+<td>Common on desktops and laptops.</td>
+</tr>
+<tr>
+<td><strong>Linux</strong></td>
+<td>Free, open-source; used on servers, supercomputers, and Android.</td>
+</tr>
+<tr>
+<td><strong>FreeBSD</strong></td>
+<td>Open-source; used for servers and embedded systems.</td>
+</tr>
+<tr>
+<td><strong>Android</strong></td>
+<td>Most popular mobile OS; based on the Linux kernel.</td>
+</tr>
+<tr>
+<td><strong>macOS</strong></td>
+<td>Apple’s OS for Mac computers.</td>
+</tr>
+<tr>
+<td><strong>iOS</strong></td>
+<td>Apple’s OS for iPhones and iPads.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="15-what-operating-systems-do">1.5 What Operating Systems Do<a class="headerlink" href="#15-what-operating-systems-do" title="Anchor link to this section for reference">&para;</a></h3>
+<ul>
+<li><strong>For Users:</strong> The OS focuses on convenience and ease of use.</li>
+<li><strong>For Servers:</strong> The OS manages resources to keep many users happy.</li>
+<li><strong>For Mobile Devices:</strong> The OS must save power and be easy to use.</li>
+<li><strong>For Embedded Computers:</strong> The OS runs automatically without user input.</li>
+</ul>
+<hr />
+<h2 id="2-operating-system-definition">2. Operating System Definition<a class="headerlink" href="#2-operating-system-definition" title="Anchor link to this section for reference">&para;</a></h2>
+<h3 id="21-what-is-the-kernelother-programsmiddleware">2.1 What is the Kernel,Other Programs,Middleware ?<a class="headerlink" href="#21-what-is-the-kernelother-programsmiddleware" title="Anchor link to this section for reference">&para;</a></h3>
+<dl>
+<dt><code>kernel :</code></dt>
+<dd>
+<ul>
+<li>is the main part of the OS.</li>
+</ul>
+</dd>
+<dd>
+<ul>
+<li>It always runs and has the <code>highest privileges</code>.</li>
+</ul>
+</dd>
+<dd>
+<ul>
+<li>It connects <strong>software</strong> to <strong>hardware</strong> and manages CPU, memory, etc.</li>
+</ul>
+</dd>
+<dt><code>other programs :</code></dt>
+<dd>
+<ul>
+<li><strong>System programs</strong> – come with OS, help manage things like the GUI, not part of the kernel.</li>
+</ul>
+</dd>
+<dd>
+<ul>
+<li><strong>Application programs</strong> – like web browsers or games. They have low privileges and ask the kernel to do tasks (e.g., save files, access network).</li>
+</ul>
+</dd>
+<dt><code>middleware :</code></dt>
+<dd>
+<ul>
+<li>Extra software that helps developers, like tools for databases or multimedia.</li>
+</ul>
+</dd>
+</dl>
+<hr />
+<h2 id="3-os-basics">3. OS Basics<a class="headerlink" href="#3-os-basics" title="Anchor link to this section for reference">&para;</a></h2>
+<h3 id="31-primitive-os-vs-multitasking">3.1 Primitive OS vs Multitasking<a class="headerlink" href="#31-primitive-os-vs-multitasking" title="Anchor link to this section for reference">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Description</th>
+<th>Problems</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Primitive OS</strong></td>
+<td>Just a library of services; can run <strong>one program at a time</strong>; assumes no bad users/programs.</td>
+<td>- <strong>Poor hardware use</strong>: CPU idle while disk works.<br>- <strong>Wastes time</strong>: Must wait for one program to finish.</td>
+</tr>
+<tr>
+<td><strong>Multitasking</strong></td>
+<td>Lets <strong>multiple programs</strong> run at once by quickly switching between them (context switch).</td>
+<td>- <strong>Infinite loops</strong>: Program never releases CPU.<br>- <strong>Memory issues</strong>: Program may access/change another’s memory.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="32-how-does-the-os-protect-itself-and-other-programs">3.2 How Does the OS Protect Itself and Other Programs?<a class="headerlink" href="#32-how-does-the-os-protect-itself-and-other-programs" title="Anchor link to this section for reference">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>User<span class="w"> </span>Programs<span class="w"> </span><span class="o">(</span>P1<span class="o">)</span><span class="w">   </span>→
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>User<span class="w"> </span>Programs<span class="w"> </span><span class="o">(</span>P2<span class="o">)</span><span class="w">   </span>→<span class="w">   </span>User<span class="w"> </span>Space<span class="w"> </span><span class="o">(</span>limited<span class="w"> </span>access,<span class="w"> </span>safe<span class="w"> </span>zone<span class="o">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>User<span class="w"> </span>Programs<span class="w"> </span><span class="o">(</span>P3<span class="o">)</span><span class="w">   </span>→
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>User<span class="w"> </span>Programs<span class="w"> </span><span class="o">(</span>P4<span class="o">)</span><span class="w">   </span>→
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">   </span>⬇<span class="w"> </span><span class="o">(</span>controlled<span class="w"> </span>access<span class="o">)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">   </span>⬇
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>Kernel<span class="w"> </span><span class="o">(</span>OS<span class="w"> </span>Core<span class="o">)</span><span class="w">  </span>→<span class="w">  </span>Kernel<span class="w"> </span>Space<span class="w"> </span><span class="o">(</span>full<span class="w"> </span>privileges,<span class="w"> </span>direct<span class="w"> </span>HW<span class="w"> </span>access<span class="o">)</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">   </span>⬇
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">   </span>⬇
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>Hardware<span class="w"> </span><span class="o">(</span>CPU,<span class="w"> </span>Memory,<span class="w"> </span>Devices<span class="o">)</span>
+</span></code></pre></div>
+<ul>
+<li>The OS uses <strong>privileged roles</strong> to separate tasks:</li>
+</ul>
+<dl>
+<dd>
+<ul>
+<li><strong>Kernel space</strong> – for the OS core, highest privileges, full access to hardware.</li>
+</ul>
+</dd>
+<dd>
+<ul>
+<li><strong>User space</strong> – for user programs, limited privileges to protect the system.</li>
+</ul>
+</dd>
+</dl>
+<ul>
+<li>This separation stops a faulty or malicious program from:</li>
+</ul>
+<dl>
+<dd>
+<ul>
+<li>Crashing the whole system</li>
+</ul>
+</dd>
+<dd>
+<ul>
+<li>Affecting other programs</li>
+</ul>
+</dd>
+</dl>
+<h4 id="321-kernel-space-vs-user-space-table">3.2.1 Kernel Space vs User Space Table<a class="headerlink" href="#321-kernel-space-vs-user-space-table" title="Anchor link to this section for reference">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Description</th>
+<th>Purpose / Benefit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Kernel Space</strong></td>
+<td>Core of the OS, highest privileges, direct hardware access.</td>
+<td>- Runs critical tasks<br>- Full control over system</td>
+</tr>
+<tr>
+<td><strong>User Space</strong></td>
+<td>Where user applications (P1–P4) run with limited privileges.</td>
+<td>- Prevents crashes spreading<br>- Protects OS and programs</td>
+</tr>
+<tr>
+<td><strong>Separation</strong></td>
+<td>Clear boundary enforced between kernel and user programs.</td>
+<td>- Stops faulty/malicious apps from harming system</td>
+</tr>
+<tr>
+<td><strong>Example</strong></td>
+<td>Programs P1–P4 run safely in user space, kernel stays isolated underneath.</td>
+<td>- Stability &amp; security maintained</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="33-what-is-a-system-call">3.3 What is a System Call?<a class="headerlink" href="#33-what-is-a-system-call" title="Anchor link to this section for reference">&para;</a></h3>
+<ul>
+<li>A <strong>system call</strong> is how a program in <strong>user space</strong> asks the <strong>OS kernel</strong> to do something, like access a file or device.</li>
+<li>Think of it as a <strong>special request</strong>—programs can't directly access hardware.</li>
+<li>Unlike normal function calls, system calls <strong>transfer control to the kernel</strong>, which has high privileges.</li>
+<li>The kernel handles the request and then returns control to the program.</li>
+<li>
+<dl>
+<dt>Many common actions (e.g., printing text) use system calls behind the scenes.</dt>
+<dd>
+<ul>
+<li>Example: <code>printf()</code> uses a system call like <code>write()</code>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<h4 id="331-how-does-it-work">3.3.1 How Does It Work?<a class="headerlink" href="#331-how-does-it-work" title="Anchor link to this section for reference">&para;</a></h4>
+<dl>
+<dd>
+<ul>
+<li>The program prepares arguments and uses a special instruction to <strong>trap into the kernel</strong>.</li>
+</ul>
+</dd>
+<dd>
+<ul>
+<li>This trap switches from <strong>user mode</strong> to <strong>kernel mode</strong>, allowing the OS to complete the request.</li>
+</ul>
+</dd>
+</dl>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span>User<span class="w"> </span>Program<span class="o">]</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">     </span><span class="p">|</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">     </span><span class="p">|</span><span class="w">  </span><span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="w"> </span>Calls<span class="w"> </span><span class="k">function</span><span class="w"> </span>like<span class="w"> </span>printf<span class="o">()</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">     </span>v
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="o">[</span>System<span class="w"> </span>Call<span class="w"> </span>Interface<span class="o">]</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">     </span><span class="p">|</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">     </span><span class="p">|</span><span class="w">  </span><span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="w"> </span>Trap<span class="w"> </span>instruction<span class="w"> </span>→<span class="w"> </span>switch<span class="w"> </span>to<span class="w"> </span>kernel<span class="w"> </span>mode
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">     </span>v
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="o">[</span>OS<span class="w"> </span>Kernel<span class="o">]</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">     </span><span class="p">|</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">     </span><span class="p">|</span><span class="w">  </span><span class="o">(</span><span class="m">3</span><span class="o">)</span><span class="w"> </span>Kernel<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>request<span class="w"> </span><span class="o">(</span>e.g.,<span class="w"> </span>write<span class="w"> </span>to<span class="w"> </span>file/device<span class="o">)</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">     </span>v
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="o">[</span>Hardware<span class="w"> </span>/<span class="w"> </span>Device<span class="o">]</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">     </span><span class="p">|</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">     </span><span class="p">|</span><span class="w">  </span><span class="o">(</span><span class="m">4</span><span class="o">)</span><span class="w"> </span>Kernel<span class="w"> </span>finishes,<span class="w"> </span>switches<span class="w">  </span>to<span class="w"> </span>user<span class="w"> </span>mode
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">     </span>v
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="o">[</span>User<span class="w"> </span>Program<span class="w"> </span>continues<span class="o">]</span>
+</span></code></pre></div>
+<hr />
+<h2 id="4-overview-of-computer-system-structure">4. Overview of Computer System Structure<a class="headerlink" href="#4-overview-of-computer-system-structure" title="Anchor link to this section for reference">&para;</a></h2>
+<h3 id="41-how-are-the-parts-of-a-computer-organized">4.1 How Are the Parts of a Computer Organized?<a class="headerlink" href="#41-how-are-the-parts-of-a-computer-organized" title="Anchor link to this section for reference">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">                 </span>+----------------------------+
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">                 </span><span class="p">|</span><span class="w">          </span>CPU<span class="o">(</span>s<span class="o">)</span><span class="w">            </span><span class="p">|</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">                 </span><span class="p">|</span><span class="w"> </span>-<span class="w"> </span>Executes<span class="w"> </span>instructions<span class="w">    </span><span class="p">|</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">                 </span><span class="p">|</span><span class="w"> </span>-<span class="w"> </span>Processes<span class="w"> </span>data<span class="w">           </span><span class="p">|</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">                 </span>+----------------------------+
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">                          </span><span class="p">|</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">                          </span>v
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">                 </span>+----------------------------+
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">                 </span><span class="p">|</span><span class="w">          </span>Cache<span class="w">             </span><span class="p">|</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">                 </span><span class="p">|</span><span class="w"> </span>-<span class="w"> </span>Small,<span class="w"> </span>fast<span class="w"> </span>memory<span class="w">       </span><span class="p">|</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">                 </span><span class="p">|</span><span class="w"> </span>-<span class="w"> </span>Reduces<span class="w"> </span>CPU<span class="w"> </span><span class="nb">wait</span><span class="w"> </span><span class="nb">time</span><span class="w">    </span><span class="p">|</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">                 </span>+----------------------------+
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">                          </span><span class="p">|</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">                          </span>v
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">                 </span>+----------------------------+
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">                 </span><span class="p">|</span><span class="w">       </span>Main<span class="w"> </span>Memory<span class="w">          </span><span class="p">|</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">                 </span><span class="p">|</span><span class="w"> </span>-<span class="w"> </span>Stores<span class="w"> </span>programs<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>data<span class="w">   </span><span class="p">|</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">                 </span><span class="p">|</span><span class="w"> </span>-<span class="w"> </span>Shared<span class="w"> </span>by<span class="w"> </span>CPU<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>devices<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">                 </span>+----------------------------+
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">                          </span>^
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">                          </span><span class="p">|</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">   </span>-------------------------------------------------------------
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">   </span><span class="p">|</span><span class="w">                         </span>System<span class="w"> </span>Bus<span class="w">                        </span><span class="p">|</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">   </span><span class="p">|</span><span class="w"> </span>-<span class="w"> </span>Connects<span class="w"> </span>CPU,<span class="w"> </span>memory,<span class="w"> </span>and<span class="w"> </span>device<span class="w"> </span>controllers<span class="w">           </span><span class="p">|</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">   </span>-------------------------------------------------------------
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">        </span><span class="p">|</span><span class="w">                       </span><span class="p">|</span><span class="w">                     </span><span class="p">|</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">        </span>v<span class="w">                       </span>v<span class="w">                     </span>v
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>+-------------------+<span class="w">   </span>+-------------------+<span class="w">   </span>+-------------------+
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="p">|</span><span class="w">  </span>Disk<span class="w"> </span>Controller<span class="w">  </span><span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w"> </span>Keyboard<span class="w"> </span>Controller<span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w"> </span>Printer<span class="w"> </span>Controller<span class="p">|</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="p">|</span><span class="w"> </span>-<span class="w"> </span>Manages<span class="w"> </span>the<span class="w"> </span>disk<span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w"> </span>-<span class="w"> </span>Handles<span class="w"> </span>keyboard<span class="w"> </span><span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w"> </span>-<span class="w"> </span>Handles<span class="w"> </span>printer<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="p">|</span><span class="w"> </span>-<span class="w"> </span>Has<span class="w"> </span><span class="nb">local</span><span class="w"> </span>buffer<span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w"> </span>-<span class="w"> </span>Has<span class="w"> </span><span class="nb">local</span><span class="w"> </span>buffer<span class="w"> </span><span class="p">|</span><span class="w">   </span><span class="p">|</span><span class="w"> </span>-<span class="w"> </span>Has<span class="w"> </span><span class="nb">local</span><span class="w"> </span>buffer<span class="p">|</span>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>+-------------------+<span class="w">   </span>+-------------------+<span class="w">   </span>+-------------------+
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">        </span><span class="p">|</span><span class="w">                       </span><span class="p">|</span><span class="w">                     </span><span class="p">|</span>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">        </span>v<span class="w">                       </span>v<span class="w">                     </span>v
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="w">   </span>+-----------+<span class="w">           </span>+-----------+<span class="w">         </span>+-----------+
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="w">   </span><span class="p">|</span><span class="w"> </span>Disk/SSD<span class="w">  </span><span class="p">|</span><span class="w">           </span><span class="p">|</span><span class="w"> </span>Keyboard<span class="w">  </span><span class="p">|</span><span class="w">         </span><span class="p">|</span><span class="w"> </span>Printer<span class="w">   </span><span class="p">|</span>
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="w">   </span>+-----------+<span class="w">           </span>+-----------+<span class="w">         </span>+-----------+
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="w">        </span>^
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="w">        </span><span class="p">|</span>
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="w">   </span>+----------------+
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="w">   </span><span class="p">|</span><span class="w"> </span>DMA<span class="w"> </span>Controller<span class="w"> </span><span class="p">|</span>
+</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="w">   </span><span class="p">|</span><span class="w"> </span>-<span class="w"> </span>Moves<span class="w"> </span>data<span class="w">   </span><span class="p">|</span>
+</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a><span class="w">   </span><span class="p">|</span><span class="w">   </span>without<span class="w"> </span>CPU<span class="w">  </span><span class="p">|</span>
+</span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a><span class="w">   </span>+----------------+
+</span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>
+</span><span id="__span-3-46"><a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>*Interrupts:*<span class="w"> </span>Devices<span class="w"> </span>can<span class="w"> </span>send<span class="w"> </span>signals<span class="w"> </span>to<span class="w"> </span>CPU<span class="w"> </span>via<span class="w"> </span>the<span class="w"> </span>bus
+</span><span id="__span-3-47"><a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a><span class="w">              </span>to<span class="w"> </span>notify<span class="w"> </span>events<span class="w"> </span><span class="o">(</span>like<span class="w"> </span>I/O<span class="w"> </span>completion<span class="o">)</span>
+</span><span id="__span-3-48"><a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>
+</span><span id="__span-3-49"><a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>*Timer/Clock:*<span class="w"> </span>Generates<span class="w"> </span>periodic<span class="w"> </span>interrupts<span class="w"> </span><span class="k">for</span><span class="w"> </span>scheduling
+</span><span id="__span-3-50"><a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a><span class="w">               </span>and<span class="w"> </span><span class="nb">time</span><span class="w"> </span>management
+</span></code></pre></div>
+<ul>
+<li>
+<dl>
+<dt>A computer has:</dt>
+<dd>
+<ul>
+<li>One or more <strong>CPUs</strong></li>
+</ul>
+</dd>
+<dd>
+<ul>
+<li><strong>Main memory</strong></li>
+</ul>
+</dd>
+<dd>
+<ul>
+<li><strong>Device controllers</strong> (for disk, keyboard, printer, etc.)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>
+<p>All parts connect through the <code>system bus</code> (shared communication line).</p>
+</li>
+<li>
+<p><code>Device controllers</code> are like managers for specific devices, such as a disk, keyboard, or printer. Each one has its own local buffer to hold data.</p>
+</li>
+<li>
+<p>The <code>CPU</code> and <code>I/O devices</code> can work at the same time, competing for main memory.</p>
+</li>
+</ul>
+<hr />
+<h3 id="42-what-is-an-interrupt">4.2 What is an Interrupt?<a class="headerlink" href="#42-what-is-an-interrupt" title="Anchor link to this section for reference">&para;</a></h3>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+  <img src="../assets/images/OS/Overview/interrupt.png" width="100%" style="border-radius: 8px;" />
+</div>
+
+<dl>
+<dt><code>Interrupt :</code></dt>
+<dd>
+<ul>
+<li>is a signal sent to the <strong>CPU</strong> by a <strong>device controller</strong>.</li>
+</ul>
+</dd>
+<dd>
+<ul>
+<li>It tells the CPU that an <strong>I/O operation</strong> (like a disk read) is finished.</li>
+</ul>
+</dd>
+<dd>
+<ul>
+<li>During I/O, the <strong>CPU</strong> and the <strong>device controller</strong> work in parallel.</li>
+</ul>
+</dd>
+<dd>
+<blockquote>
+<p>The device controller handles the I/O, moving data to/from its local buffer.</p>
+</blockquote>
+</dd>
+<dd>
+<blockquote>
+<p>Once the I/O operation is done, the controller sends an interrupt signal to the CPU. which says <strong>stop</strong> ,Then CPU can stop what it was doing to handle the request.</p>
+</blockquote>
+</dd>
+</dl>
+<h3 id="43-what-happens-when-an-interrupt-occurs">4.3 What Happens When an Interrupt Occurs?<a class="headerlink" href="#43-what-happens-when-an-interrupt-occurs" title="Anchor link to this section for reference">&para;</a></h3>
+<ul>
+<li>Control goes to an <strong>Interrupt Service Routine (ISR)</strong>.</li>
+<li>ISRs are stored in the <strong>interrupt vector</strong>, which tells the OS which routine to run.</li>
+<li>The OS first <strong>saves the CPU state</strong> (registers + program counter) so the program can continue later.</li>
+<li>The OS is <strong>interrupt-driven</strong> – it reacts to events (interrupts) as they happen.</li>
+</ul>
+<dl>
+<dd>
+<blockquote>
+<p>The OS doesn't just run in a fixed sequence. Instead, it <strong>waits for events</strong>, like a device finishing a task or a program needing service. When an event (called an <strong>interrupt</strong>) happens, the OS immediately stops what it was doing and handles that event. Afterward, it goes back to what it was doing.</p>
+</blockquote>
+</dd>
+</dl>
+<hr />
+<h3 id="44-what-is-a-trap">4.4 What is a Trap?<a class="headerlink" href="#44-what-is-a-trap" title="Anchor link to this section for reference">&para;</a></h3>
+<ul>
+<li>A <strong>trap</strong> (or <strong>exception</strong>) is a <strong>software-generated interrupt</strong>.</li>
+<li>
+<dl>
+<dt>It can be caused by:</dt>
+<dd>
+<blockquote>
+<p>An error (e.g., divide by zero)</p>
+</blockquote>
+</dd>
+<dd>
+<blockquote>
+<p>A request (e.g., a <strong>system call</strong>)</p>
+</blockquote>
+</dd>
+</dl>
+</li>
+</ul>
+<hr />
+<h2 id="5-io-structure">5. I/O Structure<a class="headerlink" href="#5-io-structure" title="Anchor link to this section for reference">&para;</a></h2>
+<h3 id="51-types-of-io">5.1 Types of I/O<a class="headerlink" href="#51-types-of-io" title="Anchor link to this section for reference">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>How it Works</th>
+<th>Pros/Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Synchronous</strong></td>
+<td>CPU waits until I/O finishes</td>
+<td>Simple but inefficient (CPU idle)</td>
+</tr>
+<tr>
+<td><strong>Asynchronous</strong></td>
+<td>CPU starts I/O and continues other tasks</td>
+<td>Efficient but more complex</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-storage-structure">6. Storage Structure<a class="headerlink" href="#6-storage-structure" title="Anchor link to this section for reference">&para;</a></h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+  <img src="../assets/images/OS/Overview/storage.png" width="100%" style="border-radius: 8px;" />
+</div>
+
+<h3 id="61-main-types-of-storage">6.1 Main Types of Storage<a class="headerlink" href="#61-main-types-of-storage" title="Anchor link to this section for reference">&para;</a></h3>
+<ul>
+<li><strong>Main Memory</strong> – Directly accessed by the CPU.</li>
+</ul>
+<blockquote>
+<ul>
+<li>Usually <strong>volatile</strong> (loses data when power is off).</li>
+<li>Example: <strong><code>DRAM</code></strong>.</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>Secondary Storage</strong> – Large, <strong>non-volatile</strong> storage.</li>
+</ul>
+<blockquote>
+<ul>
+<li>Keeps data even when power is off.</li>
+<li>Examples: <strong><code>HDD</code></strong>, <strong><code>SSD</code></strong>.</li>
+</ul>
+</blockquote>
+<hr />
+<h3 id="62-why-storage-is-a-hierarchy">6.2 Why Storage is a Hierarchy<a class="headerlink" href="#62-why-storage-is-a-hierarchy" title="Anchor link to this section for reference">&para;</a></h3>
+<ul>
+<li>Storage is arranged by <strong>speed</strong>, <strong>cost</strong>, and <strong>volatility</strong>.<blockquote>
+<ul>
+<li>Top: fast, expensive, small (<strong><code>registers</code></strong>, <strong><code>cache</code></strong>).</li>
+<li>Bottom: slower, cheaper, larger (<strong><code>HDDs</code></strong>, <strong><code>magnetic tapes</code></strong>).</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<hr />
+<h3 id="63-what-is-caching">6.3 What is Caching?<a class="headerlink" href="#63-what-is-caching" title="Anchor link to this section for reference">&para;</a></h3>
+<ul>
+<li><strong>Caching</strong> means copying data from slower storage to faster storage.</li>
+<li>The faster storage is the <strong>cache</strong>.</li>
+<li>When data is needed, the system first checks the cache:</li>
+<li><strong>Hit</strong> – data is found in cache (fast).</li>
+<li><strong>Miss</strong> – data not in cache, so it’s copied from slower storage.</li>
+<li>The <strong>cache</strong> is smaller than the main storage, so the OS must decide which old data to replace with new data.</li>
+</ul>
+<h3 id="64-what-is-cache-coherency">6.4 What is Cache Coherency?<a class="headerlink" href="#64-what-is-cache-coherency" title="Anchor link to this section for reference">&para;</a></h3>
+<ul>
+<li>In <strong>multitasking</strong> or <strong>multi-CPU</strong> systems, the same data can exist in many places:</li>
+<li><strong>Cache</strong>, <strong>main memory</strong>, or <strong>registers</strong>.</li>
+<li>The challenge is keeping all copies <strong>up to date</strong>.</li>
+<li>If data changes in the cache, other copies might be outdated.</li>
+<li>In <strong>multi-CPU systems</strong>, hardware ensures all CPUs see the latest value.</li>
+<li>In <strong>distributed systems</strong>, the problem is harder since many computers may hold copies.</li>
+</ul>
+<hr />
+<h2 id="7-how-does-a-computer-start-up">7. How Does a Computer Start Up?<a class="headerlink" href="#7-how-does-a-computer-start-up" title="Anchor link to this section for reference">&para;</a></h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+  <img src="../assets/images/OS/Overview/HowPcWorks.png" width="100%" style="border-radius: 8px;" />
+</div>
+<p><br></p>
+<blockquote>
+<p>The computer starts up in a specific order:</p>
+</blockquote>
+<ol>
+<li>On power-on or reboot, a <strong>bootstrap program</strong> runs.</li>
+<li>Stored in <strong>firmware</strong> (ROM/EPROM) or in modern PCs in the <strong>SSD</strong>.</li>
+<li>The bootstrap <strong>initializes the system</strong>.</li>
+<li>Then it loads the <strong>OS kernel</strong> into <code>memory</code> and starts it.</li>
+</ol>
+<h4 id="how-does-the-os-work-after-start">How Does the OS Work After Start?<a class="headerlink" href="#how-does-the-os-work-after-start" title="Anchor link to this section for reference">&para;</a></h4>
+<ul>
+<li>The <strong>kernel</strong> starts system services called <strong>daemons</strong> or <strong>services</strong> in <code>Windows</code>.</li>
+<li>The OS becomes <strong>interrupt-driven</strong>:<blockquote>
+<ul>
+<li>Handles <strong>hardware interrupts</strong> (e.g., file ready).</li>
+<li>Handles <strong>software interrupts</strong> (e.g., program error).</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<hr />
+<h3 id="71-what-is-direct-memory-access-dma">7.1 What is Direct Memory Access (DMA)?<a class="headerlink" href="#71-what-is-direct-memory-access-dma" title="Anchor link to this section for reference">&para;</a></h3>
+<ul>
+<li><strong>DMA</strong> is used by fast I/O devices to move data quickly.</li>
+<li>The <strong>device controller</strong> transfers data blocks directly between <strong>main memory</strong> and the device.</li>
+<li>The <strong>CPU</strong> is only interrupted once per <strong>block</strong>, not for every <strong>byte</strong>.</li>
+<li>This makes the system more <strong>efficient</strong>, since the CPU can do other work.</li>
+</ul>
+<blockquote>
+<p><strong>Example</strong>: Copying a file from disk to <code>RAM</code> with <strong><code>DMA</code></strong></p>
+</blockquote>
+<ol>
+<li>
+<p>The <strong>CPU</strong> tells the <strong>DMA controller</strong>:</p>
+</li>
+<li>
+<p>where the data should go in <strong>main memory</strong></p>
+</li>
+<li>how much data to transfer</li>
+<li>
+<p>which device (e.g., disk).</p>
+</li>
+<li>
+<p>The <strong>DMA controller</strong> takes over and moves the data <strong>directly from the disk to RAM</strong>, without bothering the CPU for each byte.</p>
+</li>
+<li>
+<p>When the transfer is complete, the <strong>DMA controller</strong> sends one <strong>interrupt</strong> to the CPU to say:</p>
+</li>
+<li>"The whole block is done."</li>
+</ol>
+<dl>
+<dd><code>Result</code>: The <strong>CPU</strong> is free to run other programs while the transfer happens.</dd>
+</dl>
+<hr />
+<h3 id="72-data-structures-used-by-the-kernel">7.2 Data Structures Used by the Kernel<a class="headerlink" href="#72-data-structures-used-by-the-kernel" title="Anchor link to this section for reference">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Data Structure</th>
+<th>Description</th>
+<th>Example / Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Linked Lists</strong></td>
+<td>Items connected in a chain</td>
+<td>Can be <strong>singly</strong>, <strong>doubly</strong>, or <strong>circular</strong></td>
+</tr>
+<tr>
+<td><strong>Binary Search Trees</strong></td>
+<td>Fast way to find data</td>
+<td>Like "20 questions" – each step narrows choices</td>
+</tr>
+<tr>
+<td><strong>Hash Maps</strong></td>
+<td>Store data with a <strong>key</strong> for quick lookup</td>
+<td>Like a phone book</td>
+</tr>
+<tr>
+<td><strong>Bitmaps</strong></td>
+<td>Series of <strong>1s and 0s</strong> showing if something is used or free</td>
+<td>"1" = used, "0" = free</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-operating-system-operations">8. Operating System Operations<a class="headerlink" href="#8-operating-system-operations" title="Anchor link to this section for reference">&para;</a></h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+  <img src="../assets/images/OS/Overview/dualMode.png" width="100%" style="border-radius: 8px;" />
+</div>
+<h3 id="what-is-dual-mode-operation">What is Dual-mode Operation?<a class="headerlink" href="#what-is-dual-mode-operation" title="Anchor link to this section for reference">&para;</a></h3>
+<p><strong>Dual-mode operation</strong> helps the OS protect itself and other system parts by having two modes: <strong>user mode</strong> and <strong>kernel mode</strong>.</p>
+<ul>
+<li><strong>User mode:</strong></li>
+</ul>
+<dl>
+<dd>
+<ul>
+<li>Where user programs run.</li>
+</ul>
+</dd>
+<dd>
+<ul>
+<li>Limited privileges, cannot access hardware directly.</li>
+</ul>
+</dd>
+<dd>
+<ul>
+<li>Like a <strong>passenger</strong> in a car (can use radio or window buttons).</li>
+</ul>
+</dd>
+</dl>
+<ul>
+<li><strong>Kernel mode:</strong></li>
+</ul>
+<dl>
+<dd>
+<ul>
+<li>Where the OS core runs.</li>
+</ul>
+</dd>
+<dd>
+<ul>
+<li>Full privileges, can access all hardware.</li>
+</ul>
+</dd>
+<dd>
+<ul>
+<li>Like the <strong>driver</strong> of the car (controls steering and engine).</li>
+</ul>
+</dd>
+</dl>
+<ul>
+<li>A <strong>mode bit</strong> shows which mode the system is in.</li>
+<li>To do something needing kernel privileges (like accessing a file), a program uses a <strong>system call</strong>.</li>
+<li><strong>Privileged instructions</strong> can only run in kernel mode to prevent user programs from misusing hardware.</li>
+</ul>
+<h4 id="how-do-we-guarantee-that-user-does-not-explicitly-set-the-mode-bit-to-kernel">How do we guarantee that user does not explicitly set the mode bit to “kernel”?<a class="headerlink" href="#how-do-we-guarantee-that-user-does-not-explicitly-set-the-mode-bit-to-kernel" title="Anchor link to this section for reference">&para;</a></h4>
+<dl>
+<dd>
+<ul>
+<li>System call changes mode to kernel, return from call resets it to user</li>
+</ul>
+</dd>
+</dl>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>user<span class="w"> </span>mode<span class="w"> </span>→<span class="w"> </span>system<span class="w"> </span>call<span class="w"> </span>→<span class="w"> </span>kernel<span class="w"> </span>mode<span class="w"> </span>→<span class="w"> </span><span class="k">return</span><span class="w"> </span>→<span class="w"> </span>user<span class="w"> </span>mode
+</span></code></pre></div>
+<hr />
+<h3 id="81-resource-management-by-the-os">8.1 Resource Management by the OS<a class="headerlink" href="#81-resource-management-by-the-os" title="Anchor link to this section for reference">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Resource Area</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Process Management</strong></td>
+<td>Creates/deletes <strong>processes</strong>, handles <strong>synchronization</strong> and communication between them</td>
+</tr>
+<tr>
+<td><strong>Memory Management</strong></td>
+<td>Tracks <strong>main memory</strong> usage, allocates/deallocates memory, moves programs in/out</td>
+</tr>
+<tr>
+<td><strong>File-System Management</strong></td>
+<td>Manages files/directories, access control, maps files to <strong>secondary storage</strong></td>
+</tr>
+<tr>
+<td><strong>Mass-Storage Management</strong></td>
+<td>Handles large storage devices (<strong>disks</strong>), manages free space, schedules disk access</td>
+</tr>
+<tr>
+<td><strong>I/O Subsystem</strong></td>
+<td>Hides hardware details, handles <strong>buffering</strong>, <strong>caching</strong>, and <strong>spooling</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-main-types-of-os-structures">9. Main Types of OS Structures<a class="headerlink" href="#9-main-types-of-os-structures" title="Anchor link to this section for reference">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">MS-DOS</label><label for="__tabbed_1_2">UNIX</label><label for="__tabbed_1_3">Layered Approach</label><label for="__tabbed_1_4">Micro</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="MS-DOS" src="../assets/images/OS/Overview/MS-DOS.png" /></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="UNIX" src="../assets/images/OS/Overview/UNIX.png" /></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="Layered" src="../assets/images/OS/Overview/Layered.png" /></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="Micro" src="../assets/images/OS/Overview/Micro.png" /></p>
+</div>
+</div>
+</div>
+<table>
+<thead>
+<tr>
+<th>Structure Type</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Simple Structure</strong></td>
+<td>OS has little structure; all functions in one place; hard to manage or extend</td>
+<td>MS-DOS</td>
+</tr>
+<tr>
+<td><strong>Monolithic Structure</strong></td>
+<td>Large kernel containing all OS functions (file system, CPU scheduling, memory management)</td>
+<td>Original UNIX</td>
+</tr>
+<tr>
+<td><strong>Microkernel Structure</strong></td>
+<td>Non-essential parts moved to <strong>user space</strong>; kernel communicates via <strong>message passing</strong>; more reliable and secure but can be slower</td>
+<td>Mach</td>
+</tr>
+<tr>
+<td><strong>Hybrid Systems</strong></td>
+<td>Combines approaches; e.g., Linux has a monolithic core plus loadable modules, Windows is mostly monolithic with some microkernel ideas</td>
+<td>Linux, Windows</td>
+</tr>
+<tr>
+<td><strong>Layered Approach</strong></td>
+<td>OS divided into <strong>layers</strong>; each layer uses services of the layer below; hardware is at the bottom</td>
+<td>–</td>
+</tr>
+</tbody>
+</table>
+<h4 id="hybrid-systems">Hybrid Systems<a class="headerlink" href="#hybrid-systems" title="Anchor link to this section for reference">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Linux</label><label for="__tabbed_2_2">Windows</label><label for="__tabbed_2_3">Mac</label><label for="__tabbed_2_4">Android</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="Linux" src="../assets/images/OS/Overview/Linux.png" /></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="Windows" src="../assets/images/OS/Overview/Windows.png" /></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="AppleMacOS" src="../assets/images/OS/Overview/AppleMacOS.png" /></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="Android" src="../assets/images/OS/Overview/Android.png" /></p>
+</div>
+</div>
+</div>
+<table>
+<thead>
+<tr>
+<th>OS / Platform</th>
+<th>Structure Type</th>
+<th>Notes / Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Linux &amp; Solaris</strong></td>
+<td>Monolithic + Modular</td>
+<td>- Kernel runs in <strong>kernel address space</strong>.<br>- Uses <strong>loadable kernel modules (LKMs)</strong>, so new functionality can be added without rebooting.<br>- Example: plugging in a USB device triggers the kernel to load the required driver.</td>
+</tr>
+<tr>
+<td><strong>Windows</strong></td>
+<td>Mostly Monolithic with Microkernel ideas</td>
+<td>- Has a central <strong>Executive layer</strong> in the kernel.<br>- Separate <strong>user-mode subsystems</strong> provide different interfaces.<br>- Combines speed of monolithic design with some microkernel features for modularity and security.</td>
+</tr>
+<tr>
+<td><strong>Apple (macOS &amp; iOS)</strong></td>
+<td>Hybrid + Layered</td>
+<td>- Kernel environment is <strong>Darwin</strong>, a hybrid of <strong>Mach microkernel</strong> and <strong>BSD Unix</strong>.<br>- Supports <strong>kernel extensions</strong> for adding modules dynamically.<br>- Uses layers for user experience, application frameworks, and core OS services.</td>
+</tr>
+<tr>
+<td><strong>Android</strong></td>
+<td>Modified Linux Kernel</td>
+<td>- Built on a <strong>Linux kernel</strong> modified for mobile devices.<br>- Handles process, memory, device drivers, and power management.<br>- Uses the <strong>ART virtual machine</strong> for running Java-based apps.<br>- Core libraries provide Android-specific services to apps.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10-computer-system-environments">10. Computer System Environments<a class="headerlink" href="#10-computer-system-environments" title="Anchor link to this section for reference">&para;</a></h2>
+<h3 id="101-types-of-operating-systems">10.1 Types of Operating Systems<a class="headerlink" href="#101-types-of-operating-systems" title="Anchor link to this section for reference">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>OS Type</th>
+<th>Description</th>
+<th>Examples / Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Traditional</strong></td>
+<td>Stand-alone, general-purpose computers. Less common today as most systems connect to the internet</td>
+<td>Desktop PCs</td>
+</tr>
+<tr>
+<td><strong>Virtualization</strong></td>
+<td>Allows one OS to run applications or other OSes inside it. Uses a <strong>Virtual Machine Manager (VMM)</strong></td>
+<td>Running Windows on Mac, data centers</td>
+</tr>
+<tr>
+<td><strong>Mobile</strong></td>
+<td>For smartphones/tablets. Optimized for limited resources, battery life, and usability. Supports extra features like GPS and gyroscope</td>
+<td>Android, iOS</td>
+</tr>
+<tr>
+<td><strong>Client-Server</strong></td>
+<td>Many <strong>clients</strong> request services from a central <strong>server</strong>. The server provides resources like files or databases</td>
+<td>Company networks, web servers</td>
+</tr>
+<tr>
+<td><strong>Peer-to-Peer (P2P)</strong></td>
+<td>Distributed system with no fixed client/server roles. All computers are <strong>peers</strong></td>
+<td>File-sharing networks, Skype</td>
+</tr>
+<tr>
+<td><strong>Cloud Computing</strong></td>
+<td>Services (compute, storage) delivered over a network. Uses virtual machines. Types: <strong>public cloud</strong>, <strong>private cloud</strong>; Services: <strong>SaaS</strong>, <strong>PaaS</strong>, <strong>IaaS</strong></td>
+<td>AWS, Google Cloud</td>
+</tr>
+<tr>
+<td><strong>Real-time Embedded Systems</strong></td>
+<td>Special-purpose computers with strict time constraints; tasks must complete on time</td>
+<td>Car controllers, industrial machines</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+  <h2 id="__comments">Comments</h2>
+<script
+  src="https://giscus.app/client.js"
+  data-repo="Mohamedattiadev/AtiDocs"
+  data-repo-id="R_kgDOPOY9Xg"
+  data-category="Ideas"
+  data-category-id="DIC_kwDOPOY9Xs4CtInS"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="preferred_color_scheme"
+  data-lang="en"
+  crossorigin="anonymous"
+  async
+></script>
+
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../programming/Python/index.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="xv6/index.html" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M247.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L179.2 256 41.9 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2025 Mohamed Attia
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.instagram.com/mohmd_attia/" target="_blank" rel="noopener" title="www.instagram.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M224.3 141a115 115 0 1 0-.6 230 115 115 0 1 0 .6-230m-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1-.6-149.2m93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1-53.6 0m129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Mohamedattiadev/" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/Mohmd_Attia" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M357.2 48h70.6L273.6 224.2 455 464H313L201.7 318.6 74.5 464H3.8l164.9-188.5L-5.2 48h145.6l100.5 132.9zm-24.8 373.8h39.1L119.1 88h-42z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/mohmd-attia/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.select", "navigation.indexes", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.preview", "navigation.tracking", "navigation.instant.progress", "navigation.path", "navigation.top", "navigation.tracking", "navigation.tabs", "navigation.expand", "content.tabs.link", "navigation.prune", "content.code.annotate", "navigation.top", "navigation.footer", "toc.follow", "content.action.edit", "content.action.view", "content.code.copy", "content.code.annotate", "content.tabs.link", "search.highlight", "search.suggest", "announce.dismis", "search.share"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../javascripts/extrajs.js"></script>
+      
+    
+  </body>
+</html>
