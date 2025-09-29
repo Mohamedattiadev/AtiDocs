@@ -7,7 +7,7 @@ comments: true
 # Linked List - Visual & Code Guide
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-  <img src="../../assets/images/algo/LinkedList/linkedList.png" width="100%" style="border-radius: 8px;" />
+  <img src="../assets/images/algo/LinkedList/linkedList.png" width="100%" style="border-radius: 8px;" />
 </div>
 
 ---

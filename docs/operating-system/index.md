@@ -9,7 +9,7 @@ comments: true
 ## Overview of OS
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-  <img src="../../assets/images/OS/Overview/OS.png" width="100%" style="border-radius: 8px;" />
+  <img src="../assets/images/OS/Overview/OS.png" width="100%" style="border-radius: 8px;" />
 </div>
 
 ## 1. What is an Operating System?
